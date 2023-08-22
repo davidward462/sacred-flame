@@ -15,7 +15,15 @@ caption = "Sacred Flame"
 pygame.display.set_caption(caption)
 
 # Surfaces
-backgroundSurface = None
+backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
+
+# Groups
+
+# Colors
+
+# Fonts
+
+# Music
 
 # Clock
 clock = pygame.time.Clock()
@@ -51,6 +59,9 @@ def main():
         # Logical updates
 
         # Graphical updates
+
+        # Background
+        screen.blit(backgroundSurface, (0, 0))
 
         # Update display surface
         pygame.display.update()

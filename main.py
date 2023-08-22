@@ -11,8 +11,11 @@ SCREEN_HEIGHT = 400
 
 # Display surface
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-caption = ""
+caption = "Sacred Flame"
 pygame.display.set_caption(caption)
+
+# Surfaces
+backgroundSurface = None
 
 # Clock
 clock = pygame.time.Clock()

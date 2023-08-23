@@ -1,6 +1,6 @@
 import pygame
 from sys import exit
-import player
+from player import Player
 
 # Initialize pygame subsystems
 pygame.init()
@@ -17,7 +17,14 @@ pygame.display.set_caption(caption)
 # Surfaces
 backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 
+# Player variables
+playerStartX = SCREEN_WIDTH/2
+playerStartY = SCREEN_HEIGHT/2
+
 # Groups
+# Player group
+player = pygame.sprite.GroupSingle()
+player.add(Player(playerStartX, playerStartY))
 
 # Colors
 
@@ -57,11 +64,16 @@ def main():
         # End event loop
 
         # Logical updates
+        player.update()
 
         # Graphical updates
 
         # Background
         screen.blit(backgroundSurface, (0, 0))
+
+        # Entities
+        player.draw(screen)
+
 
         # Update display surface
         pygame.display.update()

@@ -2,14 +2,14 @@ import pygame
 
 # class inherets from pygame sprite class
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, startX, startY):
 
         # Initialize parent sprite class
         super().__init__()
 
         # Image
         self.image = pygame.image.load('graphics/player-temp.png')
-        self.rect = self.image.get_rect(midbottom = (200,200))
+        self.rect = self.image.get_rect(midbottom = (startX,startY))
 
         # Sounds
         

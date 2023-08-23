@@ -1,6 +1,6 @@
 import pygame
 from sys import exit
-import sprite
+import player
 
 # Initialize pygame subsystems
 pygame.init()

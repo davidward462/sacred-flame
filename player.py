@@ -7,8 +7,11 @@ class Player(pygame.sprite.Sprite):
         # Initialize parent sprite class
         super().__init__()
 
-        self.image = None
-        self.rect = None
+        # Image
+        self.image = pygame.image.load('graphics/player-temp.png')
+        self.rect = self.image.get_rect(midbottom = (200,200))
+
+        # Sounds
         
     # Update sprite logic
     def Update(self):

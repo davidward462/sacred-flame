@@ -2,15 +2,20 @@ import pygame
 
 # class inherets from pygame sprite class
 class Player(pygame.sprite.Sprite):
-    def __init__(self, startX, startY):
+    def __init__(self, screenWidth, screenHeight):
 
         # Initialize parent sprite class
         super().__init__()
 
+        self.startX = screenWidth/2
+        self.startY = screenHeight/2
+        self.screenWidth = screenWidth
+        self.screenHeight = screenHeight
+
         # Image and rectangle
         self.image = pygame.image.load('graphics/player-temp.png')
         self.rect = self.image.get_rect()
-        self.rect.center = (startX, startY)
+        self.rect.center = (self.startX, self.startY)
 
         self.velocityX = 0
         self.velocityY = 0
@@ -39,8 +44,18 @@ class Player(pygame.sprite.Sprite):
             self.velocityY *= 0.7071
 
     def Move(self):
-        self.rect.x += (self.velocityX * self.speed)
-        self.rect.y += (self.velocityY * self.speed)
+        cx = self.rect.x
+        cy = self.rect.y
+
+        cx += (self.velocityX * self.speed)
+        cy += (self.velocityY * self.speed)
+
+        # Bound player within screen
+        cx = max( 0, min(cx, self.screenWidth - self.rect.width) )
+        cy = max( 0, min(cy, self.screenHeight - self.rect.height) )
+
+        self.rect.x = cx
+        self.rect.y = cy
 
     # Update sprite logic
     def update(self):

@@ -18,13 +18,11 @@ pygame.display.set_caption(caption)
 backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 
 # Player variables
-playerStartX = SCREEN_WIDTH/2
-playerStartY = SCREEN_HEIGHT/2
 
 # Groups
 # Player group
 player = pygame.sprite.GroupSingle()
-player.add(Player(playerStartX, playerStartY))
+player.add(Player(SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Colors
 

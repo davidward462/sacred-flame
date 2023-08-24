@@ -7,18 +7,52 @@ class Player(pygame.sprite.Sprite):
         # Initialize parent sprite class
         super().__init__()
 
+        # instance variables
+        self.moveUp = False
+        self.moveLeft = False
+        self.moveDown = False
+        self.moveRight = False
+
+        self.speed = 3
+
         # Image
         self.image = pygame.image.load('graphics/player-temp.png')
         self.rect = self.image.get_rect(midbottom = (startX,startY))
 
         # Sounds
+
+    def GetInput(self):
+        keys = pygame.key.get_pressed()
+        self.moveUp = keys[pygame.K_UP]
+        self.moveLeft = keys[pygame.K_LEFT]
+        self.moveDown = keys[pygame.K_DOWN]
+        self.moveRight = keys[pygame.K_RIGHT]
+
+    # Move player
+    def MovePlayer(self):
+        cx = self.rect.x
+        cy = self.rect.y
+
+        if self.moveUp:
+            cy = cy - self.speed
+        if self.moveLeft:
+            cx = cx - self.speed
+        if self.moveDown:
+            cy = cy + self.speed
+        if self.moveRight:
+            cx = cx + self.speed
+
+        self.rect.x = cx
+        self.rect.y = cy
         
     # Update sprite logic
-    def Update(self):
-        self.destroy()
+    def update(self):
+        self.GetInput()
+        self.MovePlayer()
+        self.delete()
 
     # Destroy sprite
-    def Destroy(self):
+    def delete(self):
         condition = False
         if condition:
             self.kill()

@@ -13,7 +13,10 @@ class Player(pygame.sprite.Sprite):
         self.moveDown = False
         self.moveRight = False
 
-        self.speed = 3
+        # Intended speed of player
+        self.maxSpeed = 4
+
+        self.speed = 1
 
         # Image
         self.image = pygame.image.load('graphics/player-temp.png')
@@ -34,13 +37,13 @@ class Player(pygame.sprite.Sprite):
         cy = self.rect.y
 
         if self.moveUp:
-            cy = cy - self.speed
+            cy = cy - self.maxSpeed
         if self.moveLeft:
-            cx = cx - self.speed
+            cx = cx - self.maxSpeed
         if self.moveDown:
-            cy = cy + self.speed
+            cy = cy + self.maxSpeed
         if self.moveRight:
-            cx = cx + self.speed
+            cx = cx + self.maxSpeed
 
         self.rect.x = cx
         self.rect.y = cy

@@ -13,8 +13,7 @@ class Player(pygame.sprite.Sprite):
 
         self.vx = 0
         self.vy = 0
-        self.speed = 3
-        self.direction =  [0, 0]
+        self.speed = 6
 
         # Sounds
 

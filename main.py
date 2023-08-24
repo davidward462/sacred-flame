@@ -74,7 +74,6 @@ def main():
         # Entities
         player.draw(screen)
 
-
         # Update display surface
         pygame.display.update()
 

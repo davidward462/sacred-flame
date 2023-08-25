@@ -1,6 +1,7 @@
 import pygame
 from sys import exit
 from player import Player
+from projectile import Projectile
 
 # Initialize pygame subsystems
 pygame.init()
@@ -25,6 +26,9 @@ backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 # Player group
 player = pygame.sprite.GroupSingle()
 player.add(Player(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+# Projectile group
+projectileGroup = pygame.sprite.Group()
 
 # Colors
 
@@ -60,11 +64,18 @@ def main():
                 # Close window on escape press
                 if event.key == pygame.K_ESCAPE:
                     QuitGame()
+                if event.key == pygame.K_SPACE:
+                    # Create projectile
+                    # center is a tuple (x, y)
+                    cx = player.sprite.rect.center[0]
+                    cy = player.sprite.rect.center[1]
+                    projectileGroup.add(Projectile(SCREEN_WIDTH, SCREEN_HEIGHT, cx, cy))
 
         # End event loop
 
         # Logical updates
         player.update()
+        projectileGroup.update()
 
         # Graphical updates
 
@@ -72,6 +83,7 @@ def main():
         screen.blit(backgroundSurface, (0, 0))
 
         # Entities
+        projectileGroup.draw(screen)
         player.draw(screen)
 
         # Update display surface

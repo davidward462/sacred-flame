@@ -41,6 +41,13 @@ clock = pygame.time.Clock()
 
 # Functions
 
+# Create projectile at position of player and give direction
+def FireProjectile(posX, posY):
+    print(" shoot")
+    
+    # center is a tuple (x, y)
+    projectileGroup.add(Projectile(SCREEN_WIDTH, SCREEN_HEIGHT, posX, posY))
+
 # Shutdown pygame and exit program.
 def QuitGame():
     pygame.quit()
@@ -64,12 +71,8 @@ def main():
                 # Close window on escape press
                 if event.key == pygame.K_ESCAPE:
                     QuitGame()
-                if event.key == pygame.K_SPACE:
-                    # Create projectile
-                    # center is a tuple (x, y)
-                    cx = player.sprite.rect.center[0]
-                    cy = player.sprite.rect.center[1]
-                    projectileGroup.add(Projectile(SCREEN_WIDTH, SCREEN_HEIGHT, cx, cy))
+                if event.key == pygame.K_UP:
+                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1])
 
         # End event loop
 

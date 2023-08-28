@@ -20,22 +20,31 @@ class Projectile(pygame.sprite.Sprite):
 
         self.vx = 0
         self.vy = 0
-        self.speed = 5
+        self.speed = 7
 
     # Move projectile in particular direction
     def Move(self):     
-        a = 1
+        cx = self.rect.x
+        cy = self.rect.y
+
+        cx += self.vx * self.speed
+        cy += self.vy * self.speed
+
+        self.rect.x = cx
+        self.rect.y = cy
 
     # Check if projectile is inside the bounds of the screen
     def IsInsideScreen(self):
         cx = self.rect.x
         cy = self.rect.y
-        if cx < 0 or cx > self.screenWidth or cy < 0 or cy > screenHeight:
+        if cx < 0 or cx > self.screenWidth or cy < 0 or cy > self.screenHeight:
             self.insideScreen = False
 
 
     # Update sprite logic
     def update(self):
+        self.Move()
+        self.IsInsideScreen()
         self.delete()
 
     # Destroy sprite

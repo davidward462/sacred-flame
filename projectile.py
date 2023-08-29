@@ -40,6 +40,11 @@ class Projectile(pygame.sprite.Sprite):
         if cx < 0 or cx > self.screenWidth or cy < 0 or cy > self.screenHeight:
             self.insideScreen = False
 
+    def SetSpeed(self, speed):
+        self.speed = speed
+
+    def GetSpeed(self):
+        return self.speed
 
     # Update sprite logic
     def update(self):

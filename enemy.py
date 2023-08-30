@@ -15,6 +15,15 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.image.load('graphics/entity.png')
         self.rect = self.image.get_rect()
         self.rect.center = (self.startX, self.startY)
+
+    def Move(self):
+        cx = self.rect.x
+        cy = self.rect.y
+
+        # Move enemy
+
+        self.rect.x = cx
+        self.rect.y = cy
         
     # Update sprite logic
     def update(self):

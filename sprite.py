@@ -15,7 +15,7 @@ class Sprite(pygame.sprite.Sprite):
         
     # Update sprite logic
     def update(self):
-        self.destroy()
+        self.delete()
 
     # Destroy sprite
     def delete(self):

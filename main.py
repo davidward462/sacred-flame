@@ -6,7 +6,7 @@ from projectile import Projectile
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.0.1"
+version = " v0.0.2"
 
 # Set up window
 SCREEN_WIDTH = 800

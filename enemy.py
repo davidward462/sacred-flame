@@ -7,11 +7,14 @@ class Enemy(pygame.sprite.Sprite):
         # Initialize parent sprite class
         super().__init__()
 
+        self.startX = startX
+        self.startY = startY
         self.screenWidth = screenWidth
         self.screenHeight = screenHeight
 
-        self.image = None
-        self.rect = None
+        self.image = pygame.image.load('graphics/entity.png')
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.startX, self.startY)
         
     # Update sprite logic
     def update(self):

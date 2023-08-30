@@ -27,6 +27,7 @@ class Enemy(pygame.sprite.Sprite):
         
     # Update sprite logic
     def update(self):
+        self.Move()
         self.delete()
 
     # Destroy sprite

@@ -78,7 +78,6 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     QuitGame()
                 # center is a tuple (x, y)
-                playerDirection = (player.sprite.GetVelocityX, player.sprite.GetVelocityY)
                 if event.key == pygame.K_UP:
                     FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up")
                 if event.key == pygame.K_DOWN:

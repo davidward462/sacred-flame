@@ -42,7 +42,7 @@ clock = pygame.time.Clock()
 # Functions
 
 # Create projectile at position of player and give direction
-def FireProjectile(posX, posY, direction, playerDirection):
+def FireProjectile(posX, posY, direction):
     p = Projectile(SCREEN_WIDTH, SCREEN_HEIGHT, posX, posY)
     if direction == "up":
         p.vy = -1
@@ -80,13 +80,13 @@ def main():
                 # center is a tuple (x, y)
                 playerDirection = (player.sprite.GetVelocityX, player.sprite.GetVelocityY)
                 if event.key == pygame.K_UP:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up", playerDirection)
+                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up")
                 if event.key == pygame.K_DOWN:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "down", playerDirection)
+                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "down")
                 if event.key == pygame.K_LEFT:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left", playerDirection)
+                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left")
                 if event.key == pygame.K_RIGHT:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right", playerDirection)
+                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right")
 
         # End event loop
 

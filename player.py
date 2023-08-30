@@ -43,11 +43,6 @@ class Player(pygame.sprite.Sprite):
             self.velocityX *= 0.7071
             self.velocityY *= 0.7071
 
-    def GetVelocityX():
-        return self.velocityX
-
-    def GetVelocityY():
-        return self.velocityY
 
     def Move(self):
         cx = self.rect.x

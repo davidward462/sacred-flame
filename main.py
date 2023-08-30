@@ -2,6 +2,7 @@ import pygame
 from sys import exit
 from player import Player
 from projectile import Projectile
+from enemy import Enemy
 
 # Initialize pygame subsystems
 pygame.init()
@@ -29,6 +30,13 @@ player.add(Player(SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Projectile group
 projectileGroup = pygame.sprite.Group()
+
+# Enemy group
+enemyGroup = pygame.sprite.Group()
+
+# TODO: remove later and create enemy spawn system
+eTemp = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, 100, 100, "basic")
+enemyGroup.add(eTemp)
 
 # Colors
 
@@ -92,6 +100,7 @@ def main():
         # Logical updates
         player.update()
         projectileGroup.update()
+        enemyGroup.update()
 
         # Graphical updates
 
@@ -101,6 +110,7 @@ def main():
         # Entities
         projectileGroup.draw(screen)
         player.draw(screen)
+        enemyGroup.draw(screen)
 
         # Update display surface
         pygame.display.update()

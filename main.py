@@ -1,5 +1,6 @@
 import pygame
 from sys import exit
+from random import randint
 from player import Player
 from projectile import Projectile
 from enemy import Enemy
@@ -34,20 +35,31 @@ projectileGroup = pygame.sprite.Group()
 # Enemy group
 enemyGroup = pygame.sprite.Group()
 
-# TODO: remove later and create enemy spawn system
-eTemp = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, (100, 100), "basic")
-enemyGroup.add(eTemp)
-
 # Colors
 
 # Fonts
 
 # Music
 
-# Clock
+# Clock and timers
 clock = pygame.time.Clock()
 
+enemyTimer = pygame.USEREVENT + 1
+eventRate = 1500
+pygame.time.set_timer(enemyTimer, eventRate)
+
+
+
 # Functions
+def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
+    
+    spawnX = randint(0, SCREEN_WIDTH)
+    spawnY = randint(0, SCREEN_HEIGHT)
+    spawn = (spawnX, spawnY)
+
+    e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
+    return e
+
 
 # Create projectile at position of player and give direction
 def FireProjectile(posX, posY, direction):
@@ -94,6 +106,10 @@ def main():
                     FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left")
                 if event.key == pygame.K_RIGHT:
                     FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right")
+
+            # spawn enemy on timer
+            if event.type == enemyTimer:
+                enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT))
 
         # End event loop
 

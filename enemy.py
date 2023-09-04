@@ -2,19 +2,27 @@ import pygame
 
 # class inherets from pygame sprite class
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, screenWidth, screenHeight, startX, startY, enemyType):
+    def __init__(self, screenWidth, screenHeight, position, enemyType):
 
         # Initialize parent sprite class
         super().__init__()
 
-        self.startX = startX
-        self.startY = startY
         self.screenWidth = screenWidth
         self.screenHeight = screenHeight
 
         self.image = pygame.image.load('graphics/entity.png')
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.startX, self.startY)
+        self.rect = self.image.get_rect(center = position)
+        self.position = pygame.math.Vector2(position) # position of enemy is a vector type
+        
+        self.speed = 2
+
+    def MoveTowardsPlayer(self, player):
+        playerPosition = player.sprite.rect.center
+        direction = playerPosition - self.position
+        velocity = direction.normalize() * self.speed
+
+        self.position += velocity
+        self.rect.center = self.position
 
     def Move(self):
         cx = self.rect.x
@@ -26,8 +34,8 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.y = cy
         
     # Update sprite logic
-    def update(self):
-        self.Move()
+    def update(self, player):
+        self.MoveTowardsPlayer(player)
         self.delete()
 
     # Destroy sprite

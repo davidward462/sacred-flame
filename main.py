@@ -35,7 +35,7 @@ projectileGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
 
 # TODO: remove later and create enemy spawn system
-eTemp = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, 100, 100, "basic")
+eTemp = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, (100, 100), "basic")
 enemyGroup.add(eTemp)
 
 # Colors
@@ -100,7 +100,7 @@ def main():
         # Logical updates
         player.update()
         projectileGroup.update()
-        enemyGroup.update()
+        enemyGroup.update(player)
 
         # Graphical updates
 

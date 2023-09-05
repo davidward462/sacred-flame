@@ -1,6 +1,7 @@
 import pygame
 from sys import exit
 from random import randint
+from game import Game
 from player import Player
 from projectile import Projectile
 from enemy import Enemy
@@ -18,6 +19,9 @@ SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 caption = f"Sacred Flame {version}"
 pygame.display.set_caption(caption)
+
+# Game state object
+game = Game()
 
 # Surfaces
 backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
@@ -51,7 +55,7 @@ startTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
 # Pause screen font
 pauseFont = pygame.font.SysFont('freesansbold', 32)
-pauseText = pauseFont.render("Press SPACE to begin", True, white, black) 
+pauseText = pauseFont.render("Game paused", True, white, black) 
 pauseTextRect = pauseText.get_rect()
 pauseTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 

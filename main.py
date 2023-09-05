@@ -79,6 +79,9 @@ def QuitGame():
 
 def main():
 
+    # game variables
+    gameRunning = True
+
     # Begin main game loop
     while True:
         
@@ -95,42 +98,49 @@ def main():
                 # Close window on escape press
                 if event.key == pygame.K_ESCAPE:
                     QuitGame()
-                # center is a tuple (x, y)
-                if event.key == pygame.K_UP:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up")
-                if event.key == pygame.K_DOWN:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "down")
-                if event.key == pygame.K_LEFT:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left")
-                if event.key == pygame.K_RIGHT:
-                    FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right")
+                if event.key == pygame.K_p:
+                    if gameRunning == True:
+                        gameRunning = False
+                    else:
+                        gameRunning = True
+                # get player input
+                if gameRunning:
+                    if event.key == pygame.K_UP:
+                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up")
+                    if event.key == pygame.K_DOWN:
+                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "down")
+                    if event.key == pygame.K_LEFT:
+                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left")
+                    if event.key == pygame.K_RIGHT:
+                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right")
 
             # spawn enemy on timer
-            if event.type == enemyTimer:
+            if event.type == enemyTimer and gameRunning:
                 enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT))
 
         # End event loop
 
         # Logical updates
-        player.update()
-        projectileGroup.update()
-        enemyGroup.update(player)
+        if gameRunning:
+            player.update()
+            projectileGroup.update()
+            enemyGroup.update(player)
 
-        # check collision between projectiles and enemies, and delete both on collision
-        collision = pygame.sprite.groupcollide(projectileGroup, enemyGroup, True, True)
+            # check collision between projectiles and enemies, and delete both on collision
+            collision = pygame.sprite.groupcollide(projectileGroup, enemyGroup, True, True)
 
-        # Graphical updates
+            # Graphical updates
 
-        # Background
-        screen.blit(backgroundSurface, (0, 0))
+            # Background
+            screen.blit(backgroundSurface, (0, 0))
 
-        # Entities
-        projectileGroup.draw(screen)
-        player.draw(screen)
-        enemyGroup.draw(screen)
+            # Entities
+            projectileGroup.draw(screen)
+            player.draw(screen)
+            enemyGroup.draw(screen)
 
-        # Update display surface
-        pygame.display.update()
+            # Update display surface
+            pygame.display.update()
 
         # Tick speed
         clock.tick(60)

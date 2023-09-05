@@ -99,9 +99,6 @@ def QuitGame():
 
 def main():
 
-    # game variables
-    gameRunning = True
-
     # Begin main game loop
     while True:
         
@@ -119,12 +116,9 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     QuitGame()
                 if event.key == pygame.K_p:
-                    if gameRunning == True:
-                        gameRunning = False
-                    else:
-                        gameRunning = True
+                    game.Update('pInput')
                 # get player input
-                if gameRunning:
+                if game.IsRunning():
                     if event.key == pygame.K_UP:
                         FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up")
                     if event.key == pygame.K_DOWN:
@@ -135,13 +129,13 @@ def main():
                         FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right")
 
             # spawn enemy on timer
-            if event.type == enemyTimer and gameRunning:
+            if event.type == enemyTimer and game.IsRunning():
                 enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT))
 
         # End event loop
 
         # Logical updates
-        if gameRunning:
+        if game.IsRunning():
             player.update()
             projectileGroup.update()
             enemyGroup.update(player)
@@ -162,7 +156,7 @@ def main():
         # Text
 
         # show pause text
-        if not gameRunning:
+        if not game.IsRunning():
             screen.blit(pauseText, pauseTextRect)
 
         # Update display surface

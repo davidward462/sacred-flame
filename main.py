@@ -48,8 +48,6 @@ enemyTimer = pygame.USEREVENT + 1
 eventRate = 1500
 pygame.time.set_timer(enemyTimer, eventRate)
 
-
-
 # Functions
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
     
@@ -117,6 +115,9 @@ def main():
         player.update()
         projectileGroup.update()
         enemyGroup.update(player)
+
+        # check collision between projectiles and enemies, and delete both on collision
+        collision = pygame.sprite.groupcollide(projectileGroup, enemyGroup, True, True)
 
         # Graphical updates
 

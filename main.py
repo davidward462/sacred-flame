@@ -36,8 +36,24 @@ projectileGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
 
 # Colors
+white = (255, 255, 255)
+black = (0, 0, 0)
 
 # Fonts
+
+# TODO: determine final font style
+
+# Start of game font
+startFont = pygame.font.SysFont('freesansbold', 32)
+startText = startFont.render("Press SPACE to begin", True, white, black) 
+startTextRect = startText.get_rect()
+startTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+# Pause screen font
+pauseFont = pygame.font.SysFont('freesansbold', 32)
+pauseText = pauseFont.render("Press SPACE to begin", True, white, black) 
+pauseTextRect = pauseText.get_rect()
+pauseTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
 # Music
 
@@ -139,8 +155,14 @@ def main():
             player.draw(screen)
             enemyGroup.draw(screen)
 
-            # Update display surface
-            pygame.display.update()
+        # Text
+
+        # show pause text
+        if not gameRunning:
+            screen.blit(pauseText, pauseTextRect)
+
+        # Update display surface
+        pygame.display.update()
 
         # Tick speed
         clock.tick(60)

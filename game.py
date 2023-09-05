@@ -7,7 +7,7 @@ class Game():
         
         transitions = {
                 'title': {'spaceInput': 'running'},
-                'running': {'pInput': 'paused', 'playerDeath': 'gameOver', 'success': 'gameWin'}
+                'running': {'pInput': 'paused', 'playerDeath': 'gameOver', 'success': 'gameWin'},
                 'paused': {'pInput': 'running'}
         }
 
@@ -19,6 +19,27 @@ class Game():
 
     def Update(self, event):
         self.currentState = Transition(self.currentState, event)
+
+    # check state
+    def IsPaused(self):
+        if self.currentState == 'paused':
+            return True
+        else:
+            return False
+
+    # check state
+    def IsRunning(self):
+        if self.currentState == 'running':
+            return True
+        else:
+            return False
+
+    # check state
+    def IsTitle(self):
+        if self.currentState == 'title':
+            return True
+        else:
+            return False
 
 
 

@@ -9,7 +9,7 @@ from enemy import Enemy
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.0.3"
+version = " v0.0.4"
 
 # Set up window
 SCREEN_WIDTH = 800

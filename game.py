@@ -6,8 +6,9 @@ class Game():
         self.currentState = 'title'
         
         transitions = {
-                'title': {'spaceInput': 'running'}
+                'title': {'spaceInput': 'running'},
                 'running': {'pInput': 'paused', 'playerDeath': 'gameOver', 'success': 'gameWin'}
+                'paused': {'pInput': 'running'}
         }
 
     def Transition(self, currentState, event):

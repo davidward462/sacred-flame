@@ -38,6 +38,12 @@ class Game():
         else:
             return False
 
+    def IsGameLose(self):
+        if self.currentState == 'gameLose':
+            return True
+        else:
+            return False
+
     # check state
     def IsRunning(self):
         if self.currentState == 'running':

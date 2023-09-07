@@ -21,6 +21,9 @@ class Player(pygame.sprite.Sprite):
         self.velocityY = 0
         self.speed = 6
 
+        self.health = 1
+        self.isAlive = True
+
         # Sounds
 
     def SetVelocity(self):
@@ -58,10 +61,31 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = cx
         self.rect.y = cy
 
+    # Reduce player health by the specified argument 'damage'
+    def TakeDamage(self, damage):
+        self.health = self.health - damage
+
+    def GetHealth(self):
+        return self.health
+
+    # Set health to specified argument
+    def SetHealth(self, value):
+        self.health = value
+
+    # Increment health by specified argument 
+    def AddHealth(self, value):
+        self.health = self.health + value
+
+    # Set player to dead if health is zero or less
+    def CheckHealth(self):
+        if self.health < 1:
+            self.isAlive = False
+
     # Update sprite logic
     def update(self):
         self.SetVelocity()
         self.Move()
+        self.CheckHealth()
         self.delete()
 
     # Destroy sprite

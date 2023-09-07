@@ -127,6 +127,7 @@ def main():
                 if event.key == pygame.K_r:
                     # restart game
                     game.Update('rInput')
+                    print(" restart")
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:

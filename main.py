@@ -9,7 +9,7 @@ from enemy import Enemy
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.0.4"
+version = " v0.0.5"
 
 # Set up window
 SCREEN_WIDTH = 800
@@ -116,7 +116,11 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     QuitGame()
                 if event.key == pygame.K_p:
+                    # pause game
                     game.Update('pInput')
+                if event.key == pygame.K_r:
+                    # restart game
+                    game.Update('rInput')
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:

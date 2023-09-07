@@ -8,9 +8,11 @@ class Game():
         
         self.transitions = {
                 'title': {'spaceInput': 'running'},
-                'running': {'pInput': 'paused', 'playerDeath': 'gameOver', 'success': 'gameWin'},
-                'paused': {'pInput': 'running'}
-        }
+                'running': {'pInput': 'paused', 'death': 'gameLose', 'success': 'gameWin'},
+                'paused': {'pInput': 'running'},
+                'gameLose': {'rInput', 'title'},
+                'gameWin': {'rInput', 'title'},
+                }
 
     def Transition(self, currentState, event):
             # If there is a transition for the current state, and the event exists for the current state.

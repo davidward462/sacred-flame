@@ -182,6 +182,10 @@ def main():
         if game.IsPaused():
             screen.blit(pauseText, pauseTextRect)
 
+        # Showe game over text
+        if game.IsGameLose():
+            screen.blit(deathText, deathTextRect)
+
         # Update display surface
         pygame.display.update()
 

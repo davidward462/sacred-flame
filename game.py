@@ -10,8 +10,8 @@ class Game():
                 'title': {'spaceInput': 'running'},
                 'running': {'pInput': 'paused', 'death': 'gameLose', 'success': 'gameWin'},
                 'paused': {'pInput': 'running'},
-                'gameLose': {'rInput', 'title'},
-                'gameWin': {'rInput', 'title'},
+                'gameLose': {'rInput': 'title'},
+                'gameWin': {'rInput': 'title'},
                 }
 
     def Transition(self, currentState, event):

@@ -146,14 +146,19 @@ def main():
 
             # Collisions
 
-            # check collision between projectiles and enemies, and delete both on collision
+            # Check collision between projectiles and enemies, and delete both on collision.
             # groupcollide(group1, group2, dokill1, dokill2) -> Sprite_dict
             projectileCollision = pygame.sprite.groupcollide(projectileGroup, enemyGroup, True, True)
 
+            # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite
             playerCollision = pygame.sprite.spritecollideany(player.sprite, enemyGroup)
             if playerCollision != None:
-                print(" collision with player")
+                player.sprite.TakeDamage(1)
+
+            # Handle checking player death
+            if not player.sprite.IsAlive():
+                game.Update('death')
 
             # Graphical updates
 
@@ -168,7 +173,7 @@ def main():
         # Text
 
         # show pause text
-        if not game.IsRunning():
+        if game.IsPaused():
             screen.blit(pauseText, pauseTextRect)
 
         # Update display surface

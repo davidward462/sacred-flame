@@ -81,6 +81,9 @@ class Player(pygame.sprite.Sprite):
         if self.health < 1:
             self.isAlive = False
 
+    def IsAlive(self):
+        return self.isAlive
+
     # Update sprite logic
     def update(self):
         self.SetVelocity()

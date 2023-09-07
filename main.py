@@ -59,6 +59,12 @@ pauseText = pauseFont.render("Game paused", True, white, black)
 pauseTextRect = pauseText.get_rect()
 pauseTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+# Game over screen font
+deathFont = pygame.font.SysFont('freesansbold', 32)
+deathText = deathFont.render("You Died", True, white, black) 
+deathTextRect = deathText.get_rect()
+deathTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
 # Music
 
 # Clock and timers

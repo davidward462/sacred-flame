@@ -46,6 +46,10 @@ class Player(pygame.sprite.Sprite):
             self.velocityX *= 0.7071
             self.velocityY *= 0.7071
 
+    def Restart(self):
+        print(" restart player")
+        self.rect.x = self.startX
+        self.rect.y = self.startY
 
     def Move(self):
         cx = self.rect.x

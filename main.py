@@ -84,6 +84,16 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
     e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
     return e
 
+def GameRestart():
+    enemyGroup.empty()
+    player.sprite.Restart()
+    game.Update('rInput')
+    print(" restart")
+
+def GameStart():
+    game.Update('spaceInput')
+    print(" start")
+
 
 # Create projectile at position of player and give direction
 def FireProjectile(posX, posY, direction):
@@ -121,13 +131,15 @@ def main():
                 # Close window on escape press
                 if event.key == pygame.K_ESCAPE:
                     QuitGame()
+                if event.key == pygame.K_SPACE:
+                    if game.currentState == 'title':
+                        GameStart()
                 if event.key == pygame.K_p:
                     # pause game
                     game.Update('pInput')
                 if event.key == pygame.K_r:
-                    # restart game
-                    game.Update('rInput')
-                    print(" restart")
+                    if game.currentState == 'gameLose':
+                        GameRestart()
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:
@@ -165,10 +177,12 @@ def main():
             if playerCollision != None:
                 player.sprite.TakeDamage(1)
 
-            # Handle checking player death
-            if not player.sprite.IsAlive():
-                game.Update('death')
-
+                # check if player has died after collision
+                if not player.sprite.IsAlive():
+                    game.Update('death')
+                    print(" player dead.")
+                    print(f" 1. {game.currentState}")
+                    
             # Graphical updates
 
             # Background
@@ -180,6 +194,10 @@ def main():
             enemyGroup.draw(screen)
 
         # Text
+
+        # Show start text
+        if game.IsTitle():
+            screen.blit(startText, startTextRect)
 
         # show pause text
         if game.IsPaused():

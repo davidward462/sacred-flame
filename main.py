@@ -185,7 +185,7 @@ def main():
                     
             # Graphical updates
 
-            # Background
+        # Background
         screen.blit(backgroundSurface, (0, 0))
 
         # Entities
@@ -195,11 +195,11 @@ def main():
 
         # Text
 
-        # Show start text
+        # If on the title screen
         if game.IsTitle():
             screen.blit(startText, startTextRect)
 
-        # show pause text
+        # If game is paused
         if game.IsPaused():
             screen.blit(pauseText, pauseTextRect)
 

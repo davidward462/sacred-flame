@@ -130,7 +130,7 @@ def main():
 
                 # Close window on escape press
                 if event.key == pygame.K_ESCAPE:
-                    if game.currentState != 'running' 
+                    if game.currentState != 'running':
                     # Only accept close escape game input if game is not in the running state
                         QuitGame()
                 if event.key == pygame.K_SPACE:

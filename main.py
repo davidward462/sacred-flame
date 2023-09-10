@@ -26,6 +26,10 @@ game = Game()
 # Surfaces
 backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 
+pillarImage = pygame.image.load('graphics/player-temp.png')
+pillarRect = pillarImage.get_rect()
+pillarRect.center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
 # Player variables
 
 # Groups
@@ -88,11 +92,9 @@ def GameRestart():
     enemyGroup.empty()
     player.sprite.Restart()
     game.Update('rInput')
-    print(" restart")
 
 def GameStart():
     game.Update('spaceInput')
-    print(" start")
 
 
 # Create projectile at position of player and give direction
@@ -182,8 +184,6 @@ def main():
                 # check if player has died after collision
                 if not player.sprite.IsAlive():
                     game.Update('death')
-                    print(" player dead.")
-                    print(f" 1. {game.currentState}")
                     
             # Graphical updates
 

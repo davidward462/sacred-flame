@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
 
         self.startX = screenWidth/2
-        self.startY = screenHeight/2
+        self.startY = screenHeight/2 + 50
         self.screenWidth = screenWidth
         self.screenHeight = screenHeight
 
@@ -47,7 +47,6 @@ class Player(pygame.sprite.Sprite):
             self.velocityY *= 0.7071
 
     def Restart(self):
-        print(" restart player")
         self.rect.x = self.startX
         self.rect.y = self.startY
 

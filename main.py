@@ -26,7 +26,7 @@ game = Game()
 # Surfaces
 backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 
-pillarImage = pygame.image.load('graphics/player-temp.png')
+pillarImage = pygame.image.load('graphics/pillar-temp.png')
 pillarRect = pillarImage.get_rect()
 pillarRect.center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 

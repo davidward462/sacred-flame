@@ -186,12 +186,12 @@ def main():
             # Graphical updates
 
             # Background
-            screen.blit(backgroundSurface, (0, 0))
+        screen.blit(backgroundSurface, (0, 0))
 
-            # Entities
-            projectileGroup.draw(screen)
-            player.draw(screen)
-            enemyGroup.draw(screen)
+        # Entities
+        projectileGroup.draw(screen)
+        player.draw(screen)
+        enemyGroup.draw(screen)
 
         # Text
 

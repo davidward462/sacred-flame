@@ -14,7 +14,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = position)
         self.position = pygame.math.Vector2(position) # position of enemy is a vector type
         
-        self.speed = 2
+        self.speed = 1
 
     def MoveTowardsPlayer(self, player):
         playerPosition = player.sprite.rect.center

@@ -43,6 +43,9 @@ projectileGroup = pygame.sprite.Group()
 # Enemy group
 enemyGroup = pygame.sprite.Group()
 
+# Object group
+objectGroup = pygame.sprite.GroupSingle()
+
 # Colors
 white = (255, 255, 255)
 black = (0, 0, 0)

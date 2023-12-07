@@ -97,6 +97,7 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
 
 def GameRestart():
     enemyGroup.empty()
+    projectileGroup.empty()
     player.sprite.Restart()
     game.Update('rInput')
 

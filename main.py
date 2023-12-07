@@ -5,6 +5,7 @@ from game import Game
 from player import Player
 from projectile import Projectile
 from enemy import Enemy
+from gameObject import GameObject
 
 # Initialize pygame subsystems
 pygame.init()
@@ -26,9 +27,11 @@ game = Game()
 # Surfaces
 backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 
+'''
 pillarImage = pygame.image.load('graphics/pillar-temp.png')
 pillarRect = pillarImage.get_rect()
 pillarRect.center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+'''
 
 # Player variables
 
@@ -45,6 +48,7 @@ enemyGroup = pygame.sprite.Group()
 
 # Object group
 objectGroup = pygame.sprite.GroupSingle()
+objectGroup.add( GameObject(SCREEN_WIDTH, SCREEN_HEIGHT, 'graphics/pillar-temp.png') )
 
 # Colors
 white = (255, 255, 255)
@@ -197,6 +201,7 @@ def main():
         projectileGroup.draw(screen)
         player.draw(screen)
         enemyGroup.draw(screen)
+        objectGroup.draw(screen)
 
         # Text
 

@@ -56,7 +56,9 @@ enemyGroup = pygame.sprite.Group()
 # Object group
 objectGroup = pygame.sprite.Group()
 objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/pillar-temp.png') )
-objectGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
+
+flameGroup = pygame.sprite.GroupSingle()
+flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
 
 # Colors
 white = (255, 255, 255)
@@ -239,10 +241,11 @@ def main():
         player.draw(screen)
         enemyGroup.draw(screen)
         objectGroup.draw(screen)
+        flameGroup.draw(screen)
 
         # update scale for flame
         # TODO: maybe make flame a single group
-        for obj in objectGroup.sprites():
+        for obj in flameGroup.sprites():
             obj.UpdateScale(flameTimeCurrent)
 
         DrawText(currentTime, 100, 100)

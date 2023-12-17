@@ -34,7 +34,7 @@ pillarPosY = SCREEN_HEIGHT/2
 flamePosX = pillarPosX
 flamePosY = pillarPosY - 65
 
-flameTimerMax = 5
+flameTimerMax = 45
 
 # Player variables
 
@@ -92,12 +92,12 @@ timeFactor = 100
 
 # Enemy spawning timer
 enemyTimer = pygame.USEREVENT + 1
-enemyTimerRate = 3000
+enemyTimerRate = 3500
 pygame.time.set_timer(enemyTimer, enemyTimerRate)
 
 # Flame timer
 flameTimer = pygame.USEREVENT + 2
-flameTimerRate = 1000
+flameTimerRate = 500
 pygame.time.set_timer(flameTimer, flameTimerRate)
 
 # Functions

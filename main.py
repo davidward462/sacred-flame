@@ -128,10 +128,10 @@ def FireProjectile(posX, posY, direction):
         p.vx = 1
     projectileGroup.add(p)
 
-def DrawText(text):
+def DrawText(text, posX, posY):
     text = defaultFont.render(text, True, white, black) 
     textRect = text.get_rect()
-    textRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    textRect.center = (posX, posY)
     screen.blit(text, textRect)
 
 # Shutdown pygame and exit program.
@@ -234,7 +234,7 @@ def main():
         if game.IsGameLose():
             screen.blit(deathText, deathTextRect)
 
-        DrawText("hello")
+        DrawText("hello", 100, 100)
 
         # Update display surface
         pygame.display.update()

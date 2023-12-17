@@ -40,6 +40,8 @@ pillarPosY = SCREEN_HEIGHT/2
 flamePosX = pillarPosX
 flamePosY = pillarPosY - 50
 
+flameTimerLength = 10
+
 # Player variables
 
 # Groups
@@ -98,7 +100,7 @@ pygame.time.set_timer(enemyTimer, enemyTimerRate)
 
 # Flame timer
 flameTimer = pygame.USEREVENT + 1
-flameTimerRate = 1000
+flameTimerRate = 1000 # one second
 pygame.time.set_timer(flameTimer, flameTimerRate)
 
 # Functions
@@ -148,7 +150,7 @@ def QuitGame():
 
 def main():
 
-    timeRemaining = 10
+    timeRemaining = flameTimerLength
 
     # Begin main game loop
     while True:
@@ -176,7 +178,7 @@ def main():
                     game.Update('pInput')
                 if event.key == pygame.K_r:
                     if game.currentState == 'gameLose':
-                        timeRemaining = 10
+                        timeRemaining = flameTimerLength
                         GameRestart()
                 # get player input
                 if game.IsRunning():
@@ -196,9 +198,6 @@ def main():
             # flame timer
             if event.type == flameTimer and game.IsRunning():
                 timeRemaining -= 1
-                print(f"{timeRemaining}")
-                
-                
 
         # End event loop
 
@@ -241,7 +240,7 @@ def main():
         enemyGroup.draw(screen)
         objectGroup.draw(screen)
 
-        DrawText("hello", 100, 100)
+        DrawText(timeRemaining, 100, 100)
 
         # Text
 

@@ -208,7 +208,7 @@ def main():
             enemyGroup.update(player)
 
             # Check flame timer
-            if flameTimeCurrent < 0:
+            if flameTimeCurrent <= 0:
                 game.Update('death')
 
             # Collisions
@@ -243,7 +243,7 @@ def main():
         # update scale for flame
         # TODO: maybe make flame a single group
         for obj in objectGroup.sprites():
-            obj.UpdateScale(1)
+            obj.UpdateScale(flameTimeCurrent)
 
         DrawText(currentTime, 100, 100)
         DrawText(flameTimeCurrent, 100, 200)

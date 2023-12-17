@@ -91,9 +91,15 @@ defaultFont = pygame.font.SysFont('freesansbold', 32)
 # Clock and timers
 clock = pygame.time.Clock()
 
+# Enemy spawning timer
 enemyTimer = pygame.USEREVENT + 1
-eventRate = 1500
-pygame.time.set_timer(enemyTimer, eventRate)
+enemyTimerRate = 1500
+pygame.time.set_timer(enemyTimer, enemyTimerRate)
+
+# Flame timer
+flameTimer = pygame.USEREVENT + 1
+flameTimerRate = 1000
+pygame.time.set_timer(flameTimer, flameTimerRate)
 
 # Functions
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
@@ -128,8 +134,9 @@ def FireProjectile(posX, posY, direction):
         p.vx = 1
     projectileGroup.add(p)
 
-def DrawText(text, posX, posY):
-    text = defaultFont.render(text, True, white, black) 
+def DrawText(input, posX, posY):
+    textIn = str(input)
+    text = defaultFont.render(textIn, True, white, black) 
     textRect = text.get_rect()
     textRect.center = (posX, posY)
     screen.blit(text, textRect)
@@ -140,6 +147,8 @@ def QuitGame():
     exit()
 
 def main():
+
+    timeRemaining = 10
 
     # Begin main game loop
     while True:
@@ -167,6 +176,7 @@ def main():
                     game.Update('pInput')
                 if event.key == pygame.K_r:
                     if game.currentState == 'gameLose':
+                        timeRemaining = 10
                         GameRestart()
                 # get player input
                 if game.IsRunning():
@@ -183,6 +193,13 @@ def main():
             if event.type == enemyTimer and game.IsRunning():
                 enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT))
 
+            # flame timer
+            if event.type == flameTimer and game.IsRunning():
+                timeRemaining -= 1
+                print(f"{timeRemaining}")
+                
+                
+
         # End event loop
 
         # Logical updates
@@ -190,6 +207,10 @@ def main():
             player.update()
             projectileGroup.update()
             enemyGroup.update(player)
+
+            # Check flame timer
+            if timeRemaining < 0:
+                game.Update('death')
 
             # Collisions
             # TODO: make this into functions
@@ -220,6 +241,8 @@ def main():
         enemyGroup.draw(screen)
         objectGroup.draw(screen)
 
+        DrawText("hello", 100, 100)
+
         # Text
 
         # If on the title screen
@@ -233,8 +256,6 @@ def main():
         # If player dies
         if game.IsGameLose():
             screen.blit(deathText, deathTextRect)
-
-        DrawText("hello", 100, 100)
 
         # Update display surface
         pygame.display.update()

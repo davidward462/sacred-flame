@@ -12,8 +12,9 @@ class GameObject(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = (posX, posY) )
 
         self.size = self.image.get_size()
+        self.mySize = (10, 10)
 
     def UpdateScale(self, factor):
         percent = factor/100
-        scaledImage = pygame.transform.scale(self.image, (int(self.size[0]*factor), int(self.size[1]*factor)))
+        scaledImage = pygame.transform.scale(self.image, (int(self.mySize[0]*factor), int(self.mySize[1]*factor)))
         self.image = scaledImage

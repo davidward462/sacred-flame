@@ -40,8 +40,6 @@ pillarPosY = SCREEN_HEIGHT/2
 flamePosX = pillarPosX
 flamePosY = pillarPosY - 50
 
-flameTimerLength = 10
-
 # Player variables
 
 # Groups
@@ -92,15 +90,16 @@ defaultFont = pygame.font.SysFont('freesansbold', 32)
 
 # Clock and timers
 clock = pygame.time.Clock()
+timeFactor = 100
 
 # Enemy spawning timer
 enemyTimer = pygame.USEREVENT + 1
-enemyTimerRate = 1500
+enemyTimerRate = 3000
 pygame.time.set_timer(enemyTimer, enemyTimerRate)
 
 # Flame timer
-flameTimer = pygame.USEREVENT + 1
-flameTimerRate = 1000 # one second
+flameTimer = pygame.USEREVENT + 2
+flameTimerRate = 1000
 pygame.time.set_timer(flameTimer, flameTimerRate)
 
 # Functions
@@ -150,10 +149,11 @@ def QuitGame():
 
 def main():
 
-    timeRemaining = flameTimerLength
+    startTime = int(pygame.time.get_ticks() / timeFactor)
+    flameTimeCurrent = 10
 
     # Begin main game loop
-    while True:
+    while True:        
         
         # Begin event loop
         # Get event from queue
@@ -178,7 +178,7 @@ def main():
                     game.Update('pInput')
                 if event.key == pygame.K_r:
                     if game.currentState == 'gameLose':
-                        timeRemaining = flameTimerLength
+                        flameTimeCurrent = 10
                         GameRestart()
                 # get player input
                 if game.IsRunning():
@@ -195,20 +195,20 @@ def main():
             if event.type == enemyTimer and game.IsRunning():
                 enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT))
 
-            # flame timer
             if event.type == flameTimer and game.IsRunning():
-                timeRemaining -= 1
+                flameTimeCurrent -= 1
 
         # End event loop
 
         # Logical updates
         if game.IsRunning():
+            currentTime = int(pygame.time.get_ticks() / timeFactor) - startTime
             player.update()
             projectileGroup.update()
             enemyGroup.update(player)
 
             # Check flame timer
-            if timeRemaining < 0:
+            if flameTimeCurrent < 0:
                 game.Update('death')
 
             # Collisions
@@ -243,9 +243,10 @@ def main():
         # update scale for flame
         # TODO: maybe make flame a single group
         for obj in objectGroup.sprites():
-            obj.UpdateScale(timeRemaining)
+            obj.UpdateScale(1)
 
-        DrawText(timeRemaining, 100, 100)
+        DrawText(currentTime, 100, 100)
+        DrawText(flameTimeCurrent, 100, 200)
 
         # Text
 

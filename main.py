@@ -240,6 +240,11 @@ def main():
         enemyGroup.draw(screen)
         objectGroup.draw(screen)
 
+        # update scale for flame
+        # TODO: maybe make flame a single group
+        for obj in objectGroup.sprites():
+            obj.UpdateScale(timeRemaining)
+
         DrawText(timeRemaining, 100, 100)
 
         # Text

@@ -104,6 +104,8 @@ flameTimer = pygame.USEREVENT + 2
 flameTimerRate = 500
 pygame.time.set_timer(flameTimer, flameTimerRate)
 
+# Functions
+
 # Spawn enemy at a random position in screen bounds
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
     
@@ -157,6 +159,7 @@ def QuitGame():
 
 def main():
 
+    # main function variables
     startTime = int(pygame.time.get_ticks() / timeFactor)
     flameTimeCurrent = flameTimerMax
 
@@ -178,15 +181,19 @@ def main():
                     if game.currentState != 'running':
                     # Only accept close escape game input if game is not in the running state
                         QuitGame()
+                
                 if event.key == pygame.K_SPACE:
                     if game.currentState == 'title':
                         GameStart()
+                
                 if event.key == pygame.K_p:
                     # pause game
                     game.Update('pInput')
+                
                 if event.key == pygame.K_r:
                     if game.currentState == 'gameLose':
                         GameRestart()
+                
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:

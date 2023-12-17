@@ -47,7 +47,7 @@ projectileGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
 
 # Object group
-objectGroup = pygame.sprite.GroupSingle()
+objectGroup = pygame.sprite.Group()
 objectGroup.add( GameObject(SCREEN_WIDTH, SCREEN_HEIGHT, 'graphics/pillar-temp.png') )
 
 # Colors

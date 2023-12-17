@@ -260,8 +260,7 @@ def main():
         # update scale for flame
         flamePercent = flameTimeCurrent / flameTimerMax
 
-        for obj in flameGroup.sprites():
-            obj.UpdateScale( flamePercent )
+        flameGroup.sprite.UpdateScale( flamePercent )
 
         DrawText(flameTimeCurrent, 100, 200)
 

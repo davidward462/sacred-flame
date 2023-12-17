@@ -40,6 +40,8 @@ pillarPosY = SCREEN_HEIGHT/2
 flamePosX = pillarPosX
 flamePosY = pillarPosY - 50
 
+flameTimerMax = 5
+
 # Player variables
 
 # Groups
@@ -152,7 +154,7 @@ def QuitGame():
 def main():
 
     startTime = int(pygame.time.get_ticks() / timeFactor)
-    flameTimeCurrent = 10
+    flameTimeCurrent = flameTimerMax
 
     # Begin main game loop
     while True:        
@@ -180,7 +182,6 @@ def main():
                     game.Update('pInput')
                 if event.key == pygame.K_r:
                     if game.currentState == 'gameLose':
-                        flameTimeCurrent = 10
                         GameRestart()
                 # get player input
                 if game.IsRunning():
@@ -211,6 +212,7 @@ def main():
 
             # Check flame timer
             if flameTimeCurrent <= 0:
+                flameTimeCurrent = flameTimerMax
                 game.Update('death')
 
             # Collisions

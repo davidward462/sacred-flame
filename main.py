@@ -84,6 +84,8 @@ deathText = deathFont.render("You Died", True, white, black)
 deathTextRect = deathText.get_rect()
 deathTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+defaultFont = pygame.font.SysFont('freesansbold', 32)
+
 # Music
 
 # Clock and timers
@@ -125,6 +127,12 @@ def FireProjectile(posX, posY, direction):
     if direction == "right":
         p.vx = 1
     projectileGroup.add(p)
+
+def DrawText(text):
+    text = defaultFont.render(text, True, white, black) 
+    textRect = text.get_rect()
+    textRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    screen.blit(text, textRect)
 
 # Shutdown pygame and exit program.
 def QuitGame():
@@ -225,6 +233,8 @@ def main():
         # If player dies
         if game.IsGameLose():
             screen.blit(deathText, deathTextRect)
+
+        DrawText("hello")
 
         # Update display surface
         pygame.display.update()

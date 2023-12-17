@@ -10,7 +10,7 @@ from gameObject import GameObject
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.0.8"
+version = " v0.0.9"
 
 # Set up window
 SCREEN_WIDTH = 800
@@ -100,7 +100,7 @@ flameTimer = pygame.USEREVENT + 2
 flameTimerRate = 500
 pygame.time.set_timer(flameTimer, flameTimerRate)
 
-# Functions
+# Spawn enemy at a random position in screen bounds
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
     
     spawnX = randint(0, SCREEN_WIDTH)
@@ -110,12 +110,14 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
     e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
     return e
 
+# Send game restart signal to game state machine
 def GameRestart():
     enemyGroup.empty()
     projectileGroup.empty()
     player.sprite.Restart()
     game.Update('rInput')
 
+# Send game start signal to game state machine
 def GameStart():
     game.Update('spaceInput')
 
@@ -133,6 +135,10 @@ def FireProjectile(posX, posY, direction):
         p.vx = 1
     projectileGroup.add(p)
 
+# Draw text to screen. 
+# Params: 
+#   input: data to draw, 
+#   posX/posY: postion of text on screen
 def DrawText(input, posX, posY):
     textIn = str(input)
     text = defaultFont.render(textIn, True, white, black) 
@@ -192,6 +198,7 @@ def main():
             if event.type == enemyTimer and game.IsRunning():
                 enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT))
 
+            # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():
                 flameTimeCurrent -= 1
 
@@ -245,7 +252,6 @@ def main():
         for obj in flameGroup.sprites():
             obj.UpdateScale( flamePercent )
 
-        DrawText(currentTime, 100, 100)
         DrawText(flameTimeCurrent, 100, 200)
 
         # Text

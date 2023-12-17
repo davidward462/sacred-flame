@@ -33,6 +33,13 @@ pillarRect = pillarImage.get_rect()
 pillarRect.center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 '''
 
+# Game object variables
+pillarPosX = SCREEN_WIDTH/2
+pillarPosY = SCREEN_HEIGHT/2
+
+flamePosX = pillarPosX
+flamePosY = pillarPosY - 50
+
 # Player variables
 
 # Groups
@@ -48,7 +55,8 @@ enemyGroup = pygame.sprite.Group()
 
 # Object group
 objectGroup = pygame.sprite.Group()
-objectGroup.add( GameObject(SCREEN_WIDTH, SCREEN_HEIGHT, 'graphics/pillar-temp.png') )
+objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/pillar-temp.png') )
+objectGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
 
 # Colors
 white = (255, 255, 255)

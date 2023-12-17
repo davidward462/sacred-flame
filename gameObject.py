@@ -16,7 +16,17 @@ class GameObject(pygame.sprite.Sprite):
 
     def UpdateScale(self, percent):
         # TODO: determine absolute factor somehow
-        absoluteFactor = 10
+        absoluteFactor = 5
         absolutePercent = percent * absoluteFactor
         scaledImage = pygame.transform.scale(self.image, (int(self.mySize[0]*absolutePercent), int(self.mySize[1]*absolutePercent)))
         self.image = scaledImage
+
+        # Get the original bottom middle position
+        original_bottom_middle = self.rect.midbottom
+
+        # Update the image and rect
+        self.image = scaledImage
+        self.rect = self.image.get_rect()
+
+        # Set the rect's bottom middle to the original position
+        self.rect.midbottom = original_bottom_middle

@@ -38,7 +38,7 @@ pillarPosX = SCREEN_WIDTH/2
 pillarPosY = SCREEN_HEIGHT/2
 
 flamePosX = pillarPosX
-flamePosY = pillarPosY - 50
+flamePosY = pillarPosY - 65
 
 flameTimerMax = 5
 
@@ -248,7 +248,6 @@ def main():
         # update scale for flame
         flamePercent = flameTimeCurrent / flameTimerMax
 
-        print(f"{flamePercent}")
         for obj in flameGroup.sprites():
             obj.UpdateScale( flamePercent )
 

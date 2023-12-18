@@ -264,6 +264,10 @@ def main():
             if projectileCollision:
                 flameTimeCurrent += 5
 
+                # keep flame timer below or equal to maximum
+                if flameTimeCurrent > flameTimerMax:
+                    flameTimeCurrent = flameTimerMax
+
             # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite
             playerCollision = pygame.sprite.spritecollideany(player.sprite, enemyGroup)

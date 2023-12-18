@@ -10,7 +10,7 @@ from gameObject import GameObject
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.0.9"
+version = " v0.1.0"
 
 # Set up window
 SCREEN_WIDTH = 800
@@ -291,7 +291,7 @@ def main():
         flameGroup.sprite.UpdateScale( flamePercent )
 
         # TODO: remove later, for testing only
-        DrawText(flameTimeCurrent, 100, 200)
+        #DrawText(flameTimeCurrent, 100, 200)
 
         # Text
 

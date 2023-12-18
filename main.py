@@ -132,6 +132,7 @@ def DistanceBetweenPoints(x1, y1, x2, y2):
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
     
     spawn = RandomCoordinates(SCREEN_WIDTH, SCREEN_HEIGHT)
+    minDistance = 150
 
     distanceToPlayer = DistanceBetweenPoints(spawn[0], spawn[1], playerX, playerY)
     difference = distanceToPlayer - minDistance
@@ -255,11 +256,11 @@ def main():
                 playerX = player.sprite.rect.center[0]
                 playerY = player.sprite.rect.center[1]
 
-                enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY))
+                # enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():
-                flameTimeCurrent -= 1
+                flameTimeCurrent -= 0
 
         # End event loop
 

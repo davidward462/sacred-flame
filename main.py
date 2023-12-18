@@ -104,6 +104,11 @@ flameTimer = pygame.USEREVENT + 2
 flameTimerRate = 500
 pygame.time.set_timer(flameTimer, flameTimerRate)
 
+# projectile cooldown timer
+projectileCooldownTimer = pygame.USEREVENT + 3
+projectileCooldownTimerRate = 2000
+pygame.time.set_timer(projectileCooldownTimer, projectileCooldownTimerRate)
+
 # Functions
 
 # Spawn enemy at a random position in screen bounds

@@ -38,7 +38,7 @@ flamePosX = pillarPosX
 flamePosY = pillarPosY - 65
 
 # flame timer
-flameTimerMax = 45
+flameTimerMax = 30
 
 # Player variables
 
@@ -134,17 +134,35 @@ def GameStart():
 
 
 # Create projectile at position of player and give direction
-def FireProjectile(posX, posY, direction):
-    p = Projectile(SCREEN_WIDTH, SCREEN_HEIGHT, posX, posY)
-    if direction == "up":
-        p.vy = -1
-    if direction == "down":
-        p.vy = 1
-    if direction == "left":
-        p.vx = -1
-    if direction == "right":
-        p.vx = 1
-    projectileGroup.add(p)
+# Only fire if delay condition is passed
+def FireProjectile(posX, posY, direction, lastFireTime):
+
+    fireDelay = 500
+
+    # get current time
+    currentTime = pygame.time.get_ticks()
+
+    # difference between now and last shot
+    dt = currentTime - lastFireTime
+
+    if dt > fireDelay:
+
+        p = Projectile(SCREEN_WIDTH, SCREEN_HEIGHT, posX, posY)
+        if direction == "up":
+            p.vy = -1
+        if direction == "down":
+            p.vy = 1
+        if direction == "left":
+            p.vx = -1
+        if direction == "right":
+            p.vx = 1
+        projectileGroup.add(p)
+
+        return currentTime
+    
+    else:
+        # No projectile created
+        return lastFireTime
 
 # Draw text to screen. 
 # Params: 
@@ -166,6 +184,7 @@ def main():
 
     # main function variables
     startTime = int(pygame.time.get_ticks() / timeFactor)
+    lastFireTime = startTime
     flameTimeCurrent = flameTimerMax
 
     # Begin main game loop
@@ -202,13 +221,13 @@ def main():
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:
-                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up")
+                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up", lastFireTime)
                     if event.key == pygame.K_DOWN:
-                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "down")
+                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "down", lastFireTime)
                     if event.key == pygame.K_LEFT:
-                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left")
+                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left", lastFireTime)
                     if event.key == pygame.K_RIGHT:
-                        FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right")
+                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right", lastFireTime)
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():

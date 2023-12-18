@@ -216,6 +216,7 @@ def main():
                 
                 if event.key == pygame.K_r:
                     if game.currentState == 'gameLose':
+                        flameTimeCurrent = flameTimerMax
                         GameRestart()
                 
                 # get player input
@@ -291,7 +292,7 @@ def main():
         flameGroup.sprite.UpdateScale( flamePercent )
 
         # TODO: remove later, for testing only
-        #DrawText(flameTimeCurrent, 100, 200)
+        DrawText(flameTimeCurrent, 100, 200)
 
         # Text
 

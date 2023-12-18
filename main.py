@@ -111,12 +111,17 @@ pygame.time.set_timer(projectileCooldownTimer, projectileCooldownTimerRate)
 
 # Functions
 
+# return an random position tuple within the bounds provided
+def RandomCoordinates(width, height):
+    x = randint(0, width)
+    y = randint(0, height)
+    return (x, y)
+
+
 # Spawn enemy at a random position in screen bounds
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
     
-    spawnX = randint(0, SCREEN_WIDTH)
-    spawnY = randint(0, SCREEN_HEIGHT)
-    spawn = (spawnX, spawnY)
+    spawn = RandomCoordinates(SCREEN_WIDTH, SCREEN_HEIGHT)
 
     e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
     return e

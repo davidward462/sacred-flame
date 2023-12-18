@@ -1,5 +1,6 @@
 import pygame
 from sys import exit
+from math import sqrt
 from random import randint
 from game import Game
 from player import Player
@@ -15,6 +16,9 @@ version = " v0.1.1"
 # Set up window
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
+
+centerX = SCREEN_WIDTH/2
+centerY = SCREEN_HEIGHT/2
 
 # Display surface
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -117,13 +121,23 @@ def RandomCoordinates(width, height):
     y = randint(0, height)
     return (x, y)
 
+def DistanceBetweenPoints(x1, y1, x2, y2):
+    a = x2 - x1
+    b = y2 - y1
+    c = sqrt( a**2 + b**2 )
+    return c
+
 
 # Spawn enemy at a random position in screen bounds
-def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT):
+def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
     
     spawn = RandomCoordinates(SCREEN_WIDTH, SCREEN_HEIGHT)
 
+    distanceToPlayer = DistanceBetweenPoints(spawn[0], spawn[1], playerX, playerY)
+    difference = distanceToPlayer - minDistance
+
     e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
+
     return e
 
 # Send game restart signal to game state machine
@@ -237,7 +251,11 @@ def main():
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():
-                enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT))
+                
+                playerX = player.sprite.rect.center[0]
+                playerY = player.sprite.rect.center[1]
+
+                enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():
@@ -301,7 +319,13 @@ def main():
         flameGroup.sprite.UpdateScale( flamePercent )
 
         # TODO: remove later, for testing only
-        DrawText(flameTimeCurrent, 100, 200)
+        DrawText(flameTimeCurrent, 100, 100)
+
+        playerX = player.sprite.rect.center[0]
+        playerY = player.sprite.rect.center[1]
+
+        distanceToCenter = int( DistanceBetweenPoints(playerX, playerY, centerX, centerY) )
+        DrawText(f"{distanceToCenter}", 100, 200)
 
         # Text
 

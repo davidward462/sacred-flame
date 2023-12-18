@@ -233,6 +233,11 @@ def main():
             # Check collision between projectiles and enemies, and delete both on collision.
             # groupcollide(group1, group2, dokill1, dokill2) -> Sprite_dict
             projectileCollision = pygame.sprite.groupcollide(projectileGroup, enemyGroup, True, True)
+            
+            # increment timer when and enemy is killed.
+            # TODO: remove later, only temporary
+            if projectileCollision:
+                flameTimeCurrent += 5
 
             # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite

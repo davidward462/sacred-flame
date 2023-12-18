@@ -96,7 +96,7 @@ timeFactor = 100
 
 # Enemy spawning timer
 enemyTimer = pygame.USEREVENT + 1
-enemyTimerRate = 3500
+enemyTimerRate = 2500
 pygame.time.set_timer(enemyTimer, enemyTimerRate)
 
 # Flame timer

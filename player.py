@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
 
         self.startX = screenWidth/2
-        self.startY = screenHeight/2 + 50
+        self.startY = screenHeight/2 + 150
         self.screenWidth = screenWidth
         self.screenHeight = screenHeight
 

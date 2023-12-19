@@ -100,7 +100,7 @@ timeFactor = 100
 
 # Enemy spawning timer
 enemyTimer = pygame.USEREVENT + 1
-enemyTimerRate = 1000
+enemyTimerRate = 1500
 pygame.time.set_timer(enemyTimer, enemyTimerRate)
 
 # Flame timer
@@ -136,24 +136,27 @@ def LengthOfHypotenuse(a, b):
 def LengthOfSide(s, c):
     return math.sqrt( c**2 - s**2 )
 
-# Spawn enemy at a random position in screen bounds
+# spawn enemy on the given radius of the circle
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
 
-    minDistance = 150
-    maxDistance = 300
+    minDistance = 475
+    maxDistance = 500
     
+    # random angle
     angle = 2 * math.pi * random.random()
+
+    # random values within bounds
     x = random.randint(minDistance, maxDistance)
     y = random.randint(minDistance, maxDistance)
 
-    r = 100
+    # calculate point based on given angle, and shift to be based on center of screen
+    ex = x * math.cos(angle) + SCREEN_WIDTH/2
+    ey = y * math.sin(angle) + SCREEN_HEIGHT/2
 
-    ex = r * math.cos(angle) + SCREEN_WIDTH/2
-    ey = r * math.sin(angle) + SCREEN_HEIGHT/2
-
+    # set spawn tuple
     spawn = (ex, ey)
-    print(f"{angle}")
 
+    # create enemy at given position
     e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
 
     return e

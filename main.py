@@ -141,7 +141,7 @@ def ChooseEnemyType(chance):
     if randomChoice > chance:
         return "basic"
     else:
-        return "carrier"
+        return "red"
 
 
 # spawn enemy on the given radius of the circle
@@ -163,9 +163,7 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
 
     # set spawn tuple
     spawn = (ex, ey)
-    enemyType = ChooseEnemyType(0.1)
-
-
+    enemyType = ChooseEnemyType(0.3)
     print(f"{enemyType}")
 
     # create enemy at given position

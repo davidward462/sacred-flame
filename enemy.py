@@ -10,7 +10,14 @@ class Enemy(pygame.sprite.Sprite):
         self.screenWidth = screenWidth
         self.screenHeight = screenHeight
 
-        self.image = pygame.image.load('graphics/entity.png')
+        self.enemyType = enemyType
+
+        if self.enemyType == "red":
+            self.image = pygame.image.load('graphics/enemy-red.png')
+        else:
+            self.image = pygame.image.load('graphics/enemy-basic.png')
+
+
         self.rect = self.image.get_rect(center = position)
         self.position = pygame.math.Vector2(position) # position of enemy is a vector type
         

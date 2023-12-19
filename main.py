@@ -164,7 +164,6 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
     # set spawn tuple
     spawn = (ex, ey)
     enemyType = ChooseEnemyType(0.3)
-    print(f"{enemyType}")
 
     # create enemy at given position
     e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, enemyType)
@@ -350,7 +349,7 @@ def main():
         flameGroup.sprite.UpdateScale( flamePercent )
 
         # TODO: remove later, for testing only
-        DrawText(flameTimeCurrent, 100, 100)
+        DrawText(flameTimeCurrent, 50, 50)
 
         # Text
 

@@ -11,7 +11,7 @@ from gameObject import GameObject
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.1.1"
+version = " v0.2.0"
 
 # Set up window
 SCREEN_WIDTH = 800

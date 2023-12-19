@@ -1,7 +1,7 @@
 import pygame
 from sys import exit
-from math import sqrt
-from random import randint
+import math
+import random
 from game import Game
 from player import Player
 from projectile import Projectile
@@ -33,7 +33,7 @@ backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 
 # Game object variables
 
-# place pillar in the center of the screen
+# place pillar inalpha = 2 * math.pi * random.random() the center of the screen
 pillarPosX = SCREEN_WIDTH/2
 pillarPosY = SCREEN_HEIGHT/2
 
@@ -100,7 +100,7 @@ timeFactor = 100
 
 # Enemy spawning timer
 enemyTimer = pygame.USEREVENT + 1
-enemyTimerRate = 2500
+enemyTimerRate = 1000
 pygame.time.set_timer(enemyTimer, enemyTimerRate)
 
 # Flame timer
@@ -117,25 +117,42 @@ pygame.time.set_timer(projectileCooldownTimer, projectileCooldownTimerRate)
 
 # return an random position tuple within the bounds provided
 def RandomCoordinates(width, height):
-    x = randint(0, width)
-    y = randint(0, height)
+    x = random.randint(0, width)
+    y = random.randint(0, height)
     return (x, y)
 
+# Euclidian distance 
 def DistanceBetweenPoints(x1, y1, x2, y2):
     a = x2 - x1
     b = y2 - y1
-    c = sqrt( a**2 + b**2 )
+    c = math.sqrt( a**2 + b**2 )
     return c
 
+# Solving for the hypotenuse in the pythagorean theorem, given sides a and b
+def LengthOfHypotenuse(a, b):
+    return math.sqrt( a**2 + b**2 )
+
+# Solving for the length of a side in the pythagorean theorem, given side s and hypotenuse c
+def LengthOfSide(s, c):
+    return math.sqrt( c**2 - s**2 )
 
 # Spawn enemy at a random position in screen bounds
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
-    
-    spawn = RandomCoordinates(SCREEN_WIDTH, SCREEN_HEIGHT)
-    minDistance = 150
 
-    distanceToPlayer = DistanceBetweenPoints(spawn[0], spawn[1], playerX, playerY)
-    difference = distanceToPlayer - minDistance
+    minDistance = 150
+    maxDistance = 300
+    
+    angle = 2 * math.pi * random.random()
+    x = random.randint(minDistance, maxDistance)
+    y = random.randint(minDistance, maxDistance)
+
+    r = 100
+
+    ex = r * math.cos(angle) + SCREEN_WIDTH/2
+    ey = r * math.sin(angle) + SCREEN_HEIGHT/2
+
+    spawn = (ex, ey)
+    print(f"{angle}")
 
     e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
 
@@ -256,7 +273,7 @@ def main():
                 playerX = player.sprite.rect.center[0]
                 playerY = player.sprite.rect.center[1]
 
-                # enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY))
+                enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():

@@ -11,7 +11,7 @@ from gameObject import GameObject
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.2.0"
+version = " v0.2.1"
 
 # Set up window
 SCREEN_WIDTH = 800
@@ -280,7 +280,7 @@ def main():
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():
-                flameTimeCurrent -= 0
+                flameTimeCurrent -= 1
 
         # End event loop
 
@@ -341,12 +341,6 @@ def main():
 
         # TODO: remove later, for testing only
         DrawText(flameTimeCurrent, 100, 100)
-
-        playerX = player.sprite.rect.center[0]
-        playerY = player.sprite.rect.center[1]
-
-        distanceToCenter = int( DistanceBetweenPoints(playerX, playerY, centerX, centerY) )
-        DrawText(f"{distanceToCenter}", 100, 200)
 
         # Text
 

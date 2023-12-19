@@ -136,6 +136,14 @@ def LengthOfHypotenuse(a, b):
 def LengthOfSide(s, c):
     return math.sqrt( c**2 - s**2 )
 
+def ChooseEnemyType(chance):
+    randomChoice = random.random()
+    if randomChoice > chance:
+        return "basic"
+    else:
+        return "carrier"
+
+
 # spawn enemy on the given radius of the circle
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
 
@@ -155,9 +163,13 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
 
     # set spawn tuple
     spawn = (ex, ey)
+    enemyType = ChooseEnemyType(0.1)
+
+
+    print(f"{enemyType}")
 
     # create enemy at given position
-    e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, "basic")
+    e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, enemyType)
 
     return e
 

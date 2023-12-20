@@ -364,8 +364,12 @@ def main():
             screen.blit(pauseText, pauseTextRect)
 
         # If player dies
-        if game.IsGameLose():
+        if game.PlayerIsDead():
             screen.blit(deathText, deathTextRect)
+
+        # If flame goes out
+        if game.IsDarkness():
+            screen.blit(flameOutText, flameOutTextRect)
 
         # Update display surface
         pygame.display.update()

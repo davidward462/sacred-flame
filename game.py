@@ -39,8 +39,16 @@ class Game():
         else:
             return False
 
-    def IsGameLose(self):
-        if self.currentState == 'playerDead' or self.currentState == 'darkness':
+    # check state
+    def IsDarkness(self):
+        if self.currentState == 'darkness':
+            return True
+        else:
+            return False
+
+    # check state
+    def PlayerIsDead(self):
+        if self.currentState == 'playerDead':
             return True
         else:
             return False

@@ -12,7 +12,7 @@ from spark import Spark
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.4.0"
+version = " v0.5.0"
 
 # Set up window
 SCREEN_WIDTH = 800
@@ -43,7 +43,7 @@ flamePosX = pillarPosX
 flamePosY = pillarPosY - 65
 
 # flame timer
-flameTimerMax = 25
+flameTimerMax = 50
 
 # Player variables
 

@@ -354,6 +354,9 @@ def main():
                 # check if player has died after collision
                 if not player.sprite.IsAlive():
                     game.Update('death')
+
+            # check collision between player and spark
+            sparkCollision = pygame.sprite.spritecollide(player.sprite, sparkGroup, True)
                     
             # Graphical updates
 

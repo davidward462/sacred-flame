@@ -42,7 +42,7 @@ flamePosX = pillarPosX
 flamePosY = pillarPosY - 65
 
 # flame timer
-flameTimerMax = 30
+flameTimerMax = 25
 
 # Player variables
 
@@ -315,7 +315,7 @@ def main():
             # increment timer when and enemy is killed.
             # TODO: remove later, only temporary
             if projectileCollision:
-                flameTimeCurrent += 5
+                flameTimeCurrent += 2
 
                 # keep flame timer below or equal to maximum
                 if flameTimeCurrent > flameTimerMax:
@@ -347,9 +347,6 @@ def main():
         # update scale for flame
         flamePercent = flameTimeCurrent / flameTimerMax
         flameGroup.sprite.UpdateScale( flamePercent )
-
-        # TODO: remove later, for testing only
-        DrawText(flameTimeCurrent, 50, 50)
 
         # Text
 

@@ -335,15 +335,6 @@ def main():
                     # create spark object
                     sparkGroup.add( Spark(spawnX, spawnY, 'graphics/spark-temp.png') )
             
-            # increment timer when and enemy is killed.
-            # TODO: remove later, only temporary
-            if projectileCollision:
-                flameTimeCurrent += 3
-
-                # keep flame timer below or equal to maximum
-                if flameTimeCurrent > flameTimerMax:
-                    flameTimeCurrent = flameTimerMax
-
             # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite
             playerCollision = pygame.sprite.spritecollideany(player.sprite, enemyGroup)
@@ -357,6 +348,13 @@ def main():
 
             # check collision between player and spark
             sparkCollision = pygame.sprite.spritecollide(player.sprite, sparkGroup, True)
+            if sparkCollision:
+                flameTimeCurrent += 5
+
+                # keep flame timer below or equal to maximum
+                if flameTimeCurrent > flameTimerMax:
+                    flameTimeCurrent = flameTimerMax
+
                     
             # Graphical updates
 

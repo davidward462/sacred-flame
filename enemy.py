@@ -23,6 +23,9 @@ class Enemy(pygame.sprite.Sprite):
         
         self.speed = 0.9
 
+    def GetType(self):
+        return self.enemyType
+
     def MoveTowardsPlayer(self, player):
         playerPosition = player.sprite.rect.center
         direction = playerPosition - self.position

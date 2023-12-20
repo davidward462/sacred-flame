@@ -12,7 +12,7 @@ from spark import Spark
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.3.3"
+version = " v0.4.0"
 
 # Set up window
 SCREEN_WIDTH = 800

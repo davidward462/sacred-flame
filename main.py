@@ -261,7 +261,7 @@ def main():
                 
                 if event.key == pygame.K_ESCAPE:
                     # pause game
-                    game.Update('escInput')
+                    game.Update('esc')
                 
                 if event.key == pygame.K_r:
                     if game.currentState == 'gameLose':
@@ -315,7 +315,7 @@ def main():
             # increment timer when and enemy is killed.
             # TODO: remove later, only temporary
             if projectileCollision:
-                flameTimeCurrent += 2
+                flameTimeCurrent += 3
 
                 # keep flame timer below or equal to maximum
                 if flameTimeCurrent > flameTimerMax:

@@ -8,8 +8,8 @@ class Game():
         
         self.transitions = {
                 'title': {'space': 'running'},
-                'running': {'escInput': 'paused', 'death': 'gameLose', 'success': 'gameWin'},
-                'paused': {'escInput': 'running'},
+                'running': {'esc': 'paused', 'death': 'gameLose', 'success': 'gameWin'},
+                'paused': {'esc': 'running'},
                 'gameLose': {'rInput': 'title'},
                 'gameWin': {'rInput': 'title'},
                 }

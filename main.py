@@ -33,7 +33,7 @@ backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
 
 # Game object variables
 
-# place pillar inalpha = 2 * math.pi * random.random() the center of the screen
+# place pillar in the center of the screen
 pillarPosX = SCREEN_WIDTH/2
 pillarPosY = SCREEN_HEIGHT/2
 

@@ -7,11 +7,12 @@ from player import Player
 from projectile import Projectile
 from enemy import Enemy
 from gameObject import GameObject
+from spark import Spark
 
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.3.0"
+version = " v0.3.3"
 
 # Set up window
 SCREEN_WIDTH = 800
@@ -184,6 +185,7 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
 def GameRestart():
     enemyGroup.empty()
     projectileGroup.empty()
+    sparkGroup.empty()
     player.sprite.Restart()
     game.Update('r')
 
@@ -330,9 +332,8 @@ def main():
                     # Get position of enemy the bullet collided with
                     spawnX = sprite.position[0]
                     spawnY = sprite.position[1]
-                    print(f"{sprite.position}")
                     # create spark object
-
+                    sparkGroup.add( Spark(spawnX, spawnY, 'graphics/spark-temp.png') )
             
             # increment timer when and enemy is killed.
             # TODO: remove later, only temporary
@@ -365,6 +366,7 @@ def main():
         enemyGroup.draw(screen)
         objectGroup.draw(screen)
         flameGroup.draw(screen)
+        sparkGroup.draw(screen)
 
         # update scale for flame
         flamePercent = flameTimeCurrent / flameTimerMax

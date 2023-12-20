@@ -71,26 +71,31 @@ black = (0, 0, 0)
 # Fonts
 
 # TODO: determine final font style
+defaultFont = pygame.font.SysFont('freesansbold', 32)
 
 # Start of game font
-startFont = pygame.font.SysFont('freesansbold', 32)
-startText = startFont.render("Press SPACE to begin", True, white, black) 
+# startFont = pygame.font.SysFont('freesansbold', 32)
+startText = defaultFont.render("Press SPACE to begin", True, white, black) 
 startTextRect = startText.get_rect()
 startTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
 # Pause screen font
-pauseFont = pygame.font.SysFont('freesansbold', 32)
-pauseText = pauseFont.render("Game paused", True, white, black) 
+# pauseFont = pygame.font.SysFont('freesansbold', 32)
+pauseText = defaultFont.render("Game paused", True, white, black) 
 pauseTextRect = pauseText.get_rect()
 pauseTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
-# Game over screen font
-deathFont = pygame.font.SysFont('freesansbold', 32)
-deathText = deathFont.render("You Died", True, white, black) 
+# Player death font
+# deathFont = pygame.font.SysFont('freesansbold', 32)
+deathText = defaultFont.render("You Died", True, white, black) 
 deathTextRect = deathText.get_rect()
 deathTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
-defaultFont = pygame.font.SysFont('freesansbold', 32)
+# Flame out font
+# flameOutFont = pygame.font.SysFont('freesansbold', 32)
+flameOutText = defaultFont.render("The Flame went out", True, white, black) 
+flameOutTextRect = flameOutText.get_rect()
+flameOutTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
 # Music
 

@@ -58,11 +58,16 @@ projectileGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
 
 # Object group
+# TODO: make this just the pillar group
 objectGroup = pygame.sprite.Group()
 objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/pillar-temp.png') )
 
+# Flame group
 flameGroup = pygame.sprite.GroupSingle()
 flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
+
+# Spark group
+sparkGroup = pygame.sprite.Group()
 
 # Colors
 white = (255, 255, 255)
@@ -315,7 +320,19 @@ def main():
 
             # Check collision between projectiles and enemies, and delete both on collision.
             # groupcollide(group1, group2, dokill1, dokill2) -> Sprite_dict
-            projectileCollision = pygame.sprite.groupcollide(projectileGroup, enemyGroup, True, True)
+            projectileCollision = pygame.sprite.groupcollide(enemyGroup, projectileGroup,  True, True)
+
+            # loop through sprites in returned sprite dict
+            for sprite in projectileCollision:
+                # get type
+                enemyType = sprite.GetType()
+                if enemyType == 'red':
+                    # Get position of enemy the bullet collided with
+                    spawnX = sprite.position[0]
+                    spawnY = sprite.position[1]
+                    print(f"{sprite.position}")
+                    # create spark object
+
             
             # increment timer when and enemy is killed.
             # TODO: remove later, only temporary

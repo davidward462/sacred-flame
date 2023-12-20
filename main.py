@@ -179,7 +179,7 @@ def GameRestart():
 
 # Send game start signal to game state machine
 def GameStart():
-    game.Update('spaceInput')
+    game.Update('space')
 
 
 # Create projectile at position of player and give direction

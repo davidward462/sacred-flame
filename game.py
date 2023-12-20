@@ -4,10 +4,10 @@ import pygame # is this needed?
 class Game():
     def __init__(self):
         # TODO: start on 'title' state
-        self.currentState = 'running'
+        self.currentState = 'title'
         
         self.transitions = {
-                'title': {'spaceInput': 'running'},
+                'title': {'space': 'running'},
                 'running': {'escInput': 'paused', 'death': 'gameLose', 'success': 'gameWin'},
                 'paused': {'escInput': 'running'},
                 'gameLose': {'rInput': 'title'},

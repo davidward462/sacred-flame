@@ -8,10 +8,11 @@ class Game():
         
         self.transitions = {
                 'title': {'space': 'running'},
-                'running': {'esc': 'paused', 'death': 'gameLose', 'success': 'gameWin'},
+                'running': {'esc': 'paused', 'death': 'playerDead', 'flameOut': 'darkness', 'success': 'gameWin'},
                 'paused': {'esc': 'running'},
-                'gameLose': {'rInput': 'title'},
-                'gameWin': {'rInput': 'title'},
+                'playerDead': {'r': 'title'},
+                'darkness': {'r': 'title'},
+                'gameWin': {'r': 'title'},
                 }
 
     def Transition(self, currentState, event):
@@ -39,7 +40,7 @@ class Game():
             return False
 
     def IsGameLose(self):
-        if self.currentState == 'gameLose':
+        if self.currentState == 'playerDead' or self.currentState == 'darkness':
             return True
         else:
             return False

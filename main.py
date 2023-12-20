@@ -175,7 +175,7 @@ def GameRestart():
     enemyGroup.empty()
     projectileGroup.empty()
     player.sprite.Restart()
-    game.Update('rInput')
+    game.Update('r')
 
 # Send game start signal to game state machine
 def GameStart():
@@ -264,7 +264,7 @@ def main():
                     game.Update('esc')
                 
                 if event.key == pygame.K_r:
-                    if game.currentState == 'gameLose':
+                    if game.currentState == 'playerDead' or game.currentState == 'darkness':
                         flameTimeCurrent = flameTimerMax
                         GameRestart()
                 
@@ -303,7 +303,7 @@ def main():
             # Check flame timer
             if flameTimeCurrent <= 0:
                 flameTimeCurrent = flameTimerMax
-                game.Update('death')
+                game.Update('flameOut')
 
             # Collisions
             # TODO: make this into functions

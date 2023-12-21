@@ -15,8 +15,14 @@ pygame.init()
 version = " v0.5.1"
 
 # Set up window
+"""
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 768
+"""
+
+user_display = pygame.display.Info()  
+SCREEN_WIDTH = user_display.current_w
+SCREEN_HEIGHT = user_display.current_h
 
 centerX = SCREEN_WIDTH/2
 centerY = SCREEN_HEIGHT/2
@@ -26,11 +32,19 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 caption = f"Sacred Flame {version}"
 pygame.display.set_caption(caption)
 
+# Colors
+
+white = (255, 255, 255)
+black = (0, 0, 0)
+
 # Game state object
 game = Game()
 
 # Surfaces
-backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
+# backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
+
+# background
+screen.fill('grey32')
 
 # Game object variables
 
@@ -70,9 +84,6 @@ flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
 # Spark group
 sparkGroup = pygame.sprite.Group()
 
-# Colors
-white = (255, 255, 255)
-black = (0, 0, 0)
 
 # Fonts
 
@@ -359,7 +370,8 @@ def main():
             # Graphical updates
 
         # Background
-        screen.blit(backgroundSurface, (0, 0))
+        screen.fill('grey32')
+        # screen.blit(backgroundSurface, (0, 0))
 
         # Entities
         projectileGroup.draw(screen)

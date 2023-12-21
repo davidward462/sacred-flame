@@ -12,11 +12,11 @@ from spark import Spark
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.5.0"
+version = " v0.5.1"
 
 # Set up window
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 768
 
 centerX = SCREEN_WIDTH/2
 centerY = SCREEN_HEIGHT/2
@@ -30,7 +30,7 @@ pygame.display.set_caption(caption)
 game = Game()
 
 # Surfaces
-backgroundSurface = pygame.image.load('graphics/bg-blue.png').convert_alpha()
+backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
 
 # Game object variables
 
@@ -158,8 +158,8 @@ def ChooseEnemyType(chance):
 # spawn enemy on the given radius of the circle
 def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
 
-    minDistance = 475
-    maxDistance = 500
+    minDistance = SCREEN_WIDTH/2 + 100
+    maxDistance = minDistance + 100
     
     # random angle
     angle = 2 * math.pi * random.random()

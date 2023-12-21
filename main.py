@@ -12,7 +12,7 @@ from spark import Spark
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.5.1"
+version = " v0.5.2"
 
 # Set up window
 """
@@ -57,7 +57,7 @@ flamePosX = pillarPosX
 flamePosY = pillarPosY - 65
 
 # flame timer
-flameTimerMax = 50
+flameTimerMax = 70
 
 # Player variables
 

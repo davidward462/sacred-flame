@@ -167,11 +167,8 @@ def main():
     
     version = " v0.6.0"
 
-    centerX = SCREEN_WIDTH/2
-    centerY = SCREEN_HEIGHT/2
-
     # Display surface
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((currentScreenWidth, currentScreenHeight))
     caption = f"Sacred Flame {version}"
     pygame.display.set_caption(caption)
 

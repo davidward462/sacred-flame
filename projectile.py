@@ -12,7 +12,7 @@ class Projectile(pygame.sprite.Sprite):
         self.screenWidth = screenDimensions[0]
         self.screenHeight = screenDimensions[1]
 
-        self.image = pygame.image.load('graphics/projectile-temp.png')
+        self.image = pygame.image.load('graphics/temp/projectile-temp.png')
         self.rect = self.image.get_rect()
         self.rect.center = (self.startX, self.startY)
 

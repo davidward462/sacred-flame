@@ -88,7 +88,7 @@ def SpawnEnemy(screenDimensions):
 # delete old flame and create new one
 def FlameReset(flamePosition):
     flameGroup.empty()
-    flameGroup.add( GameObject(flamePosition[0], flamePosition[1], 'graphics/flame-temp.png') )
+    flameGroup.add( GameObject(flamePosition[0], flamePosition[1], 'graphics/temp/flame-temp.png') )
 
 # Send game restart signal to game state machine
 def GameRestart(flamePosition):
@@ -183,7 +183,7 @@ def main():
     screenHeightCenter = currentScreenHeight/2
 
     # Surfaces
-    # backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
+    # backgroundSurface = pygame.image.load('graphics/temp/bg-blue-1024.png').convert_alpha()
 
     # background
     screen.fill('grey32')
@@ -204,8 +204,8 @@ def main():
 
     # Add entities to groups
     player.add( Player(screenDimensions, playerSpawnPosition) )
-    objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/pillar-temp.png') )
-    flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
+    objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/temp/pillar-temp.png') )
+    flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/temp/flame-temp.png') )
 
     # Fonts
 
@@ -343,7 +343,7 @@ def main():
                     spawnX = sprite.position[0]
                     spawnY = sprite.position[1]
                     # create spark object
-                    sparkGroup.add( Spark(spawnX, spawnY, 'graphics/spark-temp.png') )
+                    sparkGroup.add( Spark(spawnX, spawnY, 'graphics/temp/spark-temp.png') )
             
             # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite

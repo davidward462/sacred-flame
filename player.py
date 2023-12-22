@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.startY = spawnPosition[1]
 
         # Image and rectangle
-        self.image = pygame.image.load('graphics/player-temp.png')
+        self.image = pygame.image.load('graphics/temp/player-temp.png')
         self.rect = self.image.get_rect()
         self.rect.center = (self.startX, self.startY)
 

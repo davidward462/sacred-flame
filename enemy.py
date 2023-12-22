@@ -13,9 +13,9 @@ class Enemy(pygame.sprite.Sprite):
         self.enemyType = enemyType
 
         if self.enemyType == "red":
-            self.image = pygame.image.load('graphics/enemy-red.png')
+            self.image = pygame.image.load('graphics/temp/enemy-red.png')
         else:
-            self.image = pygame.image.load('graphics/enemy-basic.png')
+            self.image = pygame.image.load('graphics/temp/enemy-basic.png')
 
 
         self.rect = self.image.get_rect(center = position)

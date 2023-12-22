@@ -182,10 +182,6 @@ def main():
     screenWidthCenter = currentScreenWidth/2
     screenHeightCenter = currentScreenHeight/2
 
-    # Colors
-    white = (255, 255, 255)
-    black = (0, 0, 0)
-
     # Surfaces
     # backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
 

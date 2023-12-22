@@ -78,7 +78,7 @@ def SpawnEnemy(screenDimensions, enemyImages):
 
     # set spawn tuple
     spawnPos = (ex, ey)
-    enemyType = ChooseEnemyType(0.3)
+    enemyType = ChooseEnemyType(0.8)
 
     # create enemy at given position
     e = Enemy(screenDimensions, spawnPos, enemyType, enemyImages)

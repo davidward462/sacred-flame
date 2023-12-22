@@ -135,9 +135,11 @@ def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime):
 # Params: 
 #   input: data to draw, 
 #   posX/posY: postion of text on screen
-def DrawText(input, posX, posY):
+#   inFont: font of text
+#   screen: screen on which to draw the text
+def DrawText(input, posX, posY, font, screen):
     textIn = str(input)
-    text = defaultFont.render(textIn, True, white, black) 
+    text = font.render(textIn, True, 'white', 'black') 
     textRect = text.get_rect()
     textRect.center = (posX, posY)
     screen.blit(text, textRect)
@@ -163,7 +165,6 @@ def main():
     # dimension tuple for passing to functions
     screenDimensions = (currentScreenWidth, currentScreenHeight)
     print(f"running at {screenDimensions[0]} x {screenDimensions[1]}")
-
     
     version = " v0.6.0"
 
@@ -377,10 +378,18 @@ def main():
         sparkGroup.draw(screen)
 
         # update scale for flame
-        flamePercent = flameTimeCurrent / flameTimerMax
-        flameGroup.sprite.UpdateScale( flamePercent )
+        flameFraction = flameTimeCurrent / flameTimerMax
+        flameGroup.sprite.UpdateScale( flameFraction )
+
+        # whole number percent
+        flamePercent = int(flameFraction * 100)
 
         # Text
+
+        # show flame percent on screen
+        # TODO:  remove this in final version
+        drawThis = str(flamePercent) + "%"
+        DrawText(drawThis, 100, 50, defaultFont, screen)
 
         # If on the title screen
         if game.IsTitle():

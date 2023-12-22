@@ -2,7 +2,7 @@ import pygame
 
 # class inherets from pygame sprite class
 class Player(pygame.sprite.Sprite):
-    def __init__(self, screenDimensions, spawnPosition):
+    def __init__(self, screenDimensions, spawnPosition, playerImage):
 
         # Initialize parent sprite class
         super().__init__()
@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.startY = spawnPosition[1]
 
         # Image and rectangle
-        self.image = pygame.image.load('graphics/temp/player-temp.png')
+        self.image = pygame.image.load(playerImage)
         self.rect = self.image.get_rect()
         self.rect.center = (self.startX, self.startY)
 

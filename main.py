@@ -57,7 +57,7 @@ def ChooseEnemyType(chance):
         return "red"
 
 # spawn enemy on the given radius of the circle
-def SpawnEnemy(screenDimensions):
+def SpawnEnemy(screenDimensions, enemyImages):
 
     screenWidth = screenDimensions[0]
     screenHeight = screenDimensions[1]
@@ -81,7 +81,7 @@ def SpawnEnemy(screenDimensions):
     enemyType = ChooseEnemyType(0.3)
 
     # create enemy at given position
-    e = Enemy(screenDimensions, spawnPos, enemyType)
+    e = Enemy(screenDimensions, spawnPos, enemyType, enemyImages)
 
     return e
 
@@ -202,10 +202,19 @@ def main():
     # player start position
     playerSpawnPosition = (screenWidthCenter, screenHeightCenter + 200)
 
+    # Sprite graphics pathnames
+    pillarImage = 'graphics/temp/pillar-temp.png'
+    flameImage = 'graphics/temp/flame-temp.png'
+    playerImage = 'graphics/temp/player-temp.png'
+    enemyBasicImage = 'graphics/temp/enemy-basic.png'
+    enemyRedImage = 'graphics/temp/enemy-red.png'
+    sparkImage = 'graphics/temp/spark-temp.png'
+    enemyImages = (enemyBasicImage, enemyRedImage)
+
     # Add entities to groups
-    player.add( Player(screenDimensions, playerSpawnPosition) )
-    objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/temp/pillar-temp.png') )
-    flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/temp/flame-temp.png') )
+    player.add( Player(screenDimensions, playerSpawnPosition, playerImage) )
+    objectGroup.add( GameObject(pillarPosX, pillarPosY, pillarImage) )
+    flameGroup.add( GameObject(flamePosX, flamePosY, flameImage) )
 
     # Fonts
 
@@ -308,7 +317,7 @@ def main():
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():
-                enemyGroup.add(SpawnEnemy(screenDimensions))
+                enemyGroup.add(SpawnEnemy(screenDimensions, enemyImages))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():
@@ -343,7 +352,7 @@ def main():
                     spawnX = sprite.position[0]
                     spawnY = sprite.position[1]
                     # create spark object
-                    sparkGroup.add( Spark(spawnX, spawnY, 'graphics/temp/spark-temp.png') )
+                    sparkGroup.add( Spark(spawnX, spawnY, sparkImage) )
             
             # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite

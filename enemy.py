@@ -2,7 +2,7 @@ import pygame
 
 # class inherets from pygame sprite class
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, screenDimensions, position, enemyType):
+    def __init__(self, screenDimensions, position, enemyType, enemyImages):
 
         # Initialize parent sprite class
         super().__init__()
@@ -12,10 +12,10 @@ class Enemy(pygame.sprite.Sprite):
 
         self.enemyType = enemyType
 
-        if self.enemyType == "red":
-            self.image = pygame.image.load('graphics/temp/enemy-red.png')
+        if self.enemyType == "basic":
+            self.image = pygame.image.load(enemyImages[0])
         else:
-            self.image = pygame.image.load('graphics/temp/enemy-basic.png')
+            self.image = pygame.image.load(enemyImages[1])
 
 
         self.rect = self.image.get_rect(center = position)

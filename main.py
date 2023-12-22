@@ -164,6 +164,8 @@ def main():
 
     # dimension tuple for passing to functions
     screenDimensions = (currentScreenWidth, currentScreenHeight)
+
+    # TODO: remove this later?
     print(f"running at {screenDimensions[0]} x {screenDimensions[1]}")
     
     version = " v0.6.0"

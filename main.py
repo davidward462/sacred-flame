@@ -106,7 +106,7 @@ def GameStart():
 
 # Create projectile at position of player and give direction
 # Only fire if delay condition is passed
-def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime):
+def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime, projectileImage):
 
     fireDelay = 500
 
@@ -118,7 +118,7 @@ def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime):
 
     if dt > fireDelay:
 
-        p = Projectile(screenDimensions, posX, posY)
+        p = Projectile(screenDimensions, posX, posY, projectileImage)
         if direction == "up":
             p.vy = -1
         if direction == "down":
@@ -203,12 +203,27 @@ def main():
     playerSpawnPosition = (screenWidthCenter, screenHeightCenter + 200)
 
     # Sprite graphics pathnames
+
+    # temporary
+    '''
     pillarImage = 'graphics/temp/pillar-temp.png'
     flameImage = 'graphics/temp/flame-temp.png'
     playerImage = 'graphics/temp/player-temp.png'
     enemyBasicImage = 'graphics/temp/enemy-basic.png'
     enemyRedImage = 'graphics/temp/enemy-red.png'
     sparkImage = 'graphics/temp/spark-temp.png'
+    projectileImage = 'graphics/temp/projectile-temp.png'
+    enemyImages = (enemyBasicImage, enemyRedImage)
+    '''
+
+    # standard
+    pillarImage = 'graphics/pillar.png'
+    flameImage = 'graphics/flame.png'
+    playerImage = 'graphics/player.png'
+    enemyBasicImage = 'graphics/enemy-basic.png'
+    enemyRedImage = 'graphics/enemy-red.png'
+    sparkImage = 'graphics/spark.png'
+    projectileImage = 'graphics/projectile.png'
     enemyImages = (enemyBasicImage, enemyRedImage)
 
     # Add entities to groups
@@ -250,7 +265,7 @@ def main():
     # Clock and timers
     clock = pygame.time.Clock()
     timeFactor = 100
-    flameTimerMax = 20 #TODO: determine time limit
+    flameTimerMax = 60 #TODO: determine time limit
 
     # Enemy spawning timer
     enemyTimer = pygame.USEREVENT + 1
@@ -307,13 +322,13 @@ def main():
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "up", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "up", lastFireTime, projectileImage)
                     if event.key == pygame.K_DOWN:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "down", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "down", lastFireTime, projectileImage)
                     if event.key == pygame.K_LEFT:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "left", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "left", lastFireTime, projectileImage)
                     if event.key == pygame.K_RIGHT:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "right", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "right", lastFireTime, projectileImage)
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():

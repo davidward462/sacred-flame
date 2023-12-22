@@ -2,7 +2,7 @@ import pygame
 
 # class inherets from pygame sprite class
 class Projectile(pygame.sprite.Sprite):
-    def __init__(self, screenDimensions, startX, startY):
+    def __init__(self, screenDimensions, startX, startY, projectileImage):
 
         # Initialize parent sprite class
         super().__init__()
@@ -12,7 +12,7 @@ class Projectile(pygame.sprite.Sprite):
         self.screenWidth = screenDimensions[0]
         self.screenHeight = screenDimensions[1]
 
-        self.image = pygame.image.load('graphics/temp/projectile-temp.png')
+        self.image = pygame.image.load(projectileImage)
         self.rect = self.image.get_rect()
         self.rect.center = (self.startX, self.startY)
 

@@ -12,59 +12,12 @@ from spark import Spark
 # Initialize pygame subsystems
 pygame.init()
 
-version = " v0.5.2"
-
-# Set up window
-"""
-SCREEN_WIDTH = 1024
-SCREEN_HEIGHT = 768
-"""
-
-user_display = pygame.display.Info()  
-SCREEN_WIDTH = user_display.current_w
-SCREEN_HEIGHT = user_display.current_h
-
-centerX = SCREEN_WIDTH/2
-centerY = SCREEN_HEIGHT/2
-
-# Display surface
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-caption = f"Sacred Flame {version}"
-pygame.display.set_caption(caption)
-
-# Colors
-
-white = (255, 255, 255)
-black = (0, 0, 0)
-
 # Game state object
 game = Game()
-
-# Surfaces
-# backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
-
-# background
-screen.fill('grey32')
-
-# Game object variables
-
-# place pillar in the center of the screen
-pillarPosX = SCREEN_WIDTH/2
-pillarPosY = SCREEN_HEIGHT/2
-
-# place flame above pillar
-flamePosX = pillarPosX
-flamePosY = pillarPosY - 65
-
-# flame timer
-flameTimerMax = 70
-
-# Player variables
 
 # Groups
 # Player group
 player = pygame.sprite.GroupSingle()
-player.add(Player(SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Projectile group
 projectileGroup = pygame.sprite.Group()
@@ -73,67 +26,13 @@ projectileGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
 
 # Object group
-# TODO: make this just the pillar group
 objectGroup = pygame.sprite.Group()
-objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/pillar-temp.png') )
 
 # Flame group
 flameGroup = pygame.sprite.GroupSingle()
-flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
 
 # Spark group
 sparkGroup = pygame.sprite.Group()
-
-
-# Fonts
-
-# TODO: determine final font style
-defaultFont = pygame.font.SysFont('freesansbold', 32)
-
-# Start of game font
-# startFont = pygame.font.SysFont('freesansbold', 32)
-startText = defaultFont.render("Press SPACE to begin", True, white, black) 
-startTextRect = startText.get_rect()
-startTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
-# Pause screen font
-# pauseFont = pygame.font.SysFont('freesansbold', 32)
-pauseText = defaultFont.render("Game paused", True, white, black) 
-pauseTextRect = pauseText.get_rect()
-pauseTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
-# Player death font
-# deathFont = pygame.font.SysFont('freesansbold', 32)
-deathText = defaultFont.render("You Died", True, white, black) 
-deathTextRect = deathText.get_rect()
-deathTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
-# Flame out font
-# flameOutFont = pygame.font.SysFont('freesansbold', 32)
-flameOutText = defaultFont.render("The Flame went out", True, white, black) 
-flameOutTextRect = flameOutText.get_rect()
-flameOutTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
-# Music
-
-# Clock and timers
-clock = pygame.time.Clock()
-timeFactor = 100
-
-# Enemy spawning timer
-enemyTimer = pygame.USEREVENT + 1
-enemyTimerRate = 1500
-pygame.time.set_timer(enemyTimer, enemyTimerRate)
-
-# Flame timer
-flameTimer = pygame.USEREVENT + 2
-flameTimerRate = 500
-pygame.time.set_timer(flameTimer, flameTimerRate)
-
-# projectile cooldown timer
-projectileCooldownTimer = pygame.USEREVENT + 3
-projectileCooldownTimerRate = 2000
-pygame.time.set_timer(projectileCooldownTimer, projectileCooldownTimerRate)
 
 # Functions
 
@@ -150,6 +49,7 @@ def DistanceBetweenPoints(x1, y1, x2, y2):
     c = math.sqrt( a**2 + b**2 )
     return c
 
+"""
 # Solving for the hypotenuse in the pythagorean theorem, given sides a and b
 def LengthOfHypotenuse(a, b):
     return math.sqrt( a**2 + b**2 )
@@ -157,6 +57,7 @@ def LengthOfHypotenuse(a, b):
 # Solving for the length of a side in the pythagorean theorem, given side s and hypotenuse c
 def LengthOfSide(s, c):
     return math.sqrt( c**2 - s**2 )
+    """
 
 def ChooseEnemyType(chance):
     randomChoice = random.random()
@@ -167,9 +68,12 @@ def ChooseEnemyType(chance):
 
 
 # spawn enemy on the given radius of the circle
-def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
+def SpawnEnemy(screenDimensions, playerX, playerY):
 
-    minDistance = SCREEN_WIDTH/2 + 100
+    screenWidth = screenDimensions[0]
+    screenHeight = screenDimensions[1]
+
+    minDistance = screenWidth/2 + 100
     maxDistance = minDistance + 100
     
     # random angle
@@ -180,15 +84,15 @@ def SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY):
     y = random.randint(minDistance, maxDistance)
 
     # calculate point based on given angle, and shift to be based on center of screen
-    ex = x * math.cos(angle) + SCREEN_WIDTH/2
-    ey = y * math.sin(angle) + SCREEN_HEIGHT/2
+    ex = x * math.cos(angle) + screenWidth/2
+    ey = y * math.sin(angle) + screenHeight/2
 
     # set spawn tuple
     spawn = (ex, ey)
     enemyType = ChooseEnemyType(0.3)
 
     # create enemy at given position
-    e = Enemy(SCREEN_WIDTH, SCREEN_HEIGHT, spawn, enemyType)
+    e = Enemy(screenWidth, screenHeight, spawn, enemyType)
 
     return e
 
@@ -207,8 +111,10 @@ def GameStart():
 
 # Create projectile at position of player and give direction
 # Only fire if delay condition is passed
-def FireProjectile(posX, posY, direction, lastFireTime):
+def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime):
 
+    screenWidth = screenDimensions[0]
+    screenHeight = screenDimensions[1]
     fireDelay = 500
 
     # get current time
@@ -219,7 +125,7 @@ def FireProjectile(posX, posY, direction, lastFireTime):
 
     if dt > fireDelay:
 
-        p = Projectile(SCREEN_WIDTH, SCREEN_HEIGHT, posX, posY)
+        p = Projectile(screenWidth, screenHeight, posX, posY)
         if direction == "up":
             p.vy = -1
         if direction == "down":
@@ -254,10 +160,117 @@ def QuitGame():
 
 def main():
 
-    # main function variables
+    # Default window dimensions
+    SCREEN_WIDTH = 1024
+    SCREEN_HEIGHT = 768
+
+    # get user display info
+    USER_DISPLAY = pygame.display.Info()  
+
+    # make sure window is not larger than user's display
+    currentScreenWidth = min(SCREEN_WIDTH, USER_DISPLAY.current_w)
+    currentScreenHeight = min(SCREEN_HEIGHT, USER_DISPLAY.current_h)
+
+    # dimension tuple for passing to functions
+    screenDimensions = (currentScreenWidth, currentScreenHeight)
+    print(f"running at {screenDimensions[0]} x {screenDimensions[1]}")
+
+    
+    version = " v0.5.2"
+
+    centerX = SCREEN_WIDTH/2
+    centerY = SCREEN_HEIGHT/2
+
+    # Display surface
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    caption = f"Sacred Flame {version}"
+    pygame.display.set_caption(caption)
+
+    # Colors
+
+    white = (255, 255, 255)
+    black = (0, 0, 0)
+
+
+    # Surfaces
+    # backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
+
+    # background
+    screen.fill('grey32')
+
+    # Game object variables
+
+    # place pillar in the center of the screen
+    pillarPosX = currentScreenWidth/2
+    pillarPosY = currentScreenHeight/2
+
+    # place flame above pillar
+    flamePosX = pillarPosX
+    flamePosY = pillarPosY - 65
+
+    # flame timer
+    flameTimerMax = 70
+
+    # Add entities to groups
+    player.add(Player(currentScreenWidth, currentScreenHeight))
+    objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/pillar-temp.png') )
+    flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
+
+    # Fonts
+
+    # TODO: determine final font style
+    defaultFont = pygame.font.SysFont('freesansbold', 32)
+
+    # Start of game font
+    # startFont = pygame.font.SysFont('freesansbold', 32)
+    startText = defaultFont.render("Press SPACE to begin", True, white, black) 
+    startTextRect = startText.get_rect()
+    startTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+    # Pause screen font
+    # pauseFont = pygame.font.SysFont('freesansbold', 32)
+    pauseText = defaultFont.render("Game paused", True, white, black) 
+    pauseTextRect = pauseText.get_rect()
+    pauseTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+    # Player death font
+    # deathFont = pygame.font.SysFont('freesansbold', 32)
+    deathText = defaultFont.render("You Died", True, white, black) 
+    deathTextRect = deathText.get_rect()
+    deathTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+    # Flame out font
+    # flameOutFont = pygame.font.SysFont('freesansbold', 32)
+    flameOutText = defaultFont.render("The Flame went out", True, white, black) 
+    flameOutTextRect = flameOutText.get_rect()
+    flameOutTextRect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+    # Music
+
+    # Clock and timers
+    clock = pygame.time.Clock()
+    timeFactor = 100
+
+    # Enemy spawning timer
+    enemyTimer = pygame.USEREVENT + 1
+    enemyTimerRate = 1500
+    pygame.time.set_timer(enemyTimer, enemyTimerRate)
+
+    # Flame timer
+    flameTimer = pygame.USEREVENT + 2
+    flameTimerRate = 500
+    pygame.time.set_timer(flameTimer, flameTimerRate)
+
+    # projectile cooldown timer
+    projectileCooldownTimer = pygame.USEREVENT + 3
+    projectileCooldownTimerRate = 2000
+    pygame.time.set_timer(projectileCooldownTimer, projectileCooldownTimerRate)
+
+    # Timer functions
     startTime = int(pygame.time.get_ticks() / timeFactor)
     lastFireTime = startTime
     flameTimeCurrent = flameTimerMax
+
 
     # Begin main game loop
     while True:        
@@ -294,13 +307,13 @@ def main():
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:
-                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "up", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "up", lastFireTime)
                     if event.key == pygame.K_DOWN:
-                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "down", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "down", lastFireTime)
                     if event.key == pygame.K_LEFT:
-                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "left", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "left", lastFireTime)
                     if event.key == pygame.K_RIGHT:
-                        lastFireTime = FireProjectile(player.sprite.rect.center[0], player.sprite.rect.center[1], "right", lastFireTime)
+                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "right", lastFireTime)
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():
@@ -308,7 +321,7 @@ def main():
                 playerX = player.sprite.rect.center[0]
                 playerY = player.sprite.rect.center[1]
 
-                enemyGroup.add(SpawnEnemy(SCREEN_WIDTH, SCREEN_HEIGHT, playerX, playerY))
+                enemyGroup.add(SpawnEnemy(screenDimensions, playerX, playerY))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():

@@ -11,7 +11,7 @@ class Game():
                 'running': {'esc': 'paused', 'death': 'playerDead', 'flameOut': 'darkness', 'success': 'gameWin'},
                 'paused': {'esc': 'running'},
                 'playerDead': {'r': 'title'},
-                'darkness': {'r': 'title'},
+                'darkness': {'r': 'title'}, # flame has gone out
                 'gameWin': {'r': 'title'},
                 }
 

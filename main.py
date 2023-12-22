@@ -172,7 +172,7 @@ def main():
     # TODO: remove this later?
     print(f"running at {screenDimensions[0]} x {screenDimensions[1]}")
     
-    version = " v0.7.0"
+    version = " v0.7.1"
 
     # Display surface
     screen = pygame.display.set_mode((currentScreenWidth, currentScreenHeight))

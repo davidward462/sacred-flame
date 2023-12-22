@@ -57,7 +57,7 @@ def ChooseEnemyType(chance):
         return "red"
 
 # spawn enemy on the given radius of the circle
-def SpawnEnemy(screenDimensions, playerX, playerY):
+def SpawnEnemy(screenDimensions):
 
     screenWidth = screenDimensions[0]
     screenHeight = screenDimensions[1]
@@ -77,11 +77,11 @@ def SpawnEnemy(screenDimensions, playerX, playerY):
     ey = y * math.sin(angle) + screenHeight/2
 
     # set spawn tuple
-    spawn = (ex, ey)
+    spawnPos = (ex, ey)
     enemyType = ChooseEnemyType(0.3)
 
     # create enemy at given position
-    e = Enemy(screenWidth, screenHeight, spawn, enemyType)
+    e = Enemy(screenDimensions, spawnPos, enemyType)
 
     return e
 
@@ -306,7 +306,7 @@ def main():
                 playerX = player.sprite.rect.center[0]
                 playerY = player.sprite.rect.center[1]
 
-                enemyGroup.add(SpawnEnemy(screenDimensions, playerX, playerY))
+                enemyGroup.add(SpawnEnemy(screenDimensions))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():

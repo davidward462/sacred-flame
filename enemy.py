@@ -2,13 +2,13 @@ import pygame
 
 # class inherets from pygame sprite class
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, screenWidth, screenHeight, position, enemyType):
+    def __init__(self, screenDimensions, position, enemyType):
 
         # Initialize parent sprite class
         super().__init__()
 
-        self.screenWidth = screenWidth
-        self.screenHeight = screenHeight
+        self.screenWidth = screenDimensions[0]
+        self.screenHeight = screenDimensions[1]
 
         self.enemyType = enemyType
 

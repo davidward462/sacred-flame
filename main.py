@@ -214,25 +214,25 @@ def main():
 
     # Start of game font
     # startFont = pygame.font.SysFont('freesansbold', 32)
-    startText = defaultFont.render("Press SPACE to begin", True, white, black) 
+    startText = defaultFont.render("Press SPACE to begin", True, 'white', 'black') 
     startTextRect = startText.get_rect()
     startTextRect.center = (currentScreenWidth / 2, currentScreenHeight / 2)
 
     # Pause screen font
     # pauseFont = pygame.font.SysFont('freesansbold', 32)
-    pauseText = defaultFont.render("Game paused", True, white, black) 
+    pauseText = defaultFont.render("Game paused", True, 'white', 'black') 
     pauseTextRect = pauseText.get_rect()
     pauseTextRect.center = (currentScreenWidth / 2, currentScreenHeight / 2)
 
     # Player death font
     # deathFont = pygame.font.SysFont('freesansbold', 32)
-    deathText = defaultFont.render("You Died", True, white, black) 
+    deathText = defaultFont.render("You Died", True, 'white', 'black') 
     deathTextRect = deathText.get_rect()
     deathTextRect.center = (currentScreenWidth / 2, currentScreenHeight / 2)
 
     # Flame out font
     # flameOutFont = pygame.font.SysFont('freesansbold', 32)
-    flameOutText = defaultFont.render("The Flame went out", True, white, black) 
+    flameOutText = defaultFont.render("The Flame went out", True, 'white', 'black') 
     flameOutTextRect = flameOutText.get_rect()
     flameOutTextRect.center = (currentScreenWidth / 2, currentScreenHeight / 2)
 

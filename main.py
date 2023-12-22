@@ -86,17 +86,17 @@ def SpawnEnemy(screenDimensions, enemyImages):
     return e
 
 # delete old flame and create new one
-def FlameReset(flamePosition):
+def FlameReset(flamePosition, flameImage):
     flameGroup.empty()
-    flameGroup.add( GameObject(flamePosition[0], flamePosition[1], 'graphics/temp/flame-temp.png') )
+    flameGroup.add( GameObject(flamePosition[0], flamePosition[1], flameImage) )
 
 # Send game restart signal to game state machine
-def GameRestart(flamePosition):
+def GameRestart(flamePosition, flameImage):
     enemyGroup.empty()
     projectileGroup.empty()
     sparkGroup.empty()
     player.sprite.Restart()
-    FlameReset(flamePosition)
+    FlameReset(flamePosition, flameImage)
     game.Update('r')
 
 # Send game start signal to game state machine
@@ -317,7 +317,7 @@ def main():
                 if event.key == pygame.K_r:
                     if game.currentState == 'playerDead' or game.currentState == 'darkness':
                         flameTimeCurrent = flameTimerMax
-                        GameRestart(flamePosition)
+                        GameRestart(flamePosition, flameImage)
                 
                 # get player input
                 if game.IsRunning():

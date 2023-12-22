@@ -49,23 +49,12 @@ def DistanceBetweenPoints(x1, y1, x2, y2):
     c = math.sqrt( a**2 + b**2 )
     return c
 
-"""
-# Solving for the hypotenuse in the pythagorean theorem, given sides a and b
-def LengthOfHypotenuse(a, b):
-    return math.sqrt( a**2 + b**2 )
-
-# Solving for the length of a side in the pythagorean theorem, given side s and hypotenuse c
-def LengthOfSide(s, c):
-    return math.sqrt( c**2 - s**2 )
-    """
-
 def ChooseEnemyType(chance):
     randomChoice = random.random()
     if randomChoice > chance:
         return "basic"
     else:
         return "red"
-
 
 # spawn enemy on the given radius of the circle
 def SpawnEnemy(screenDimensions, playerX, playerY):
@@ -176,7 +165,7 @@ def main():
     print(f"running at {screenDimensions[0]} x {screenDimensions[1]}")
 
     
-    version = " v0.5.2"
+    version = " v0.6.0"
 
     centerX = SCREEN_WIDTH/2
     centerY = SCREEN_HEIGHT/2
@@ -187,10 +176,8 @@ def main():
     pygame.display.set_caption(caption)
 
     # Colors
-
     white = (255, 255, 255)
     black = (0, 0, 0)
-
 
     # Surfaces
     # backgroundSurface = pygame.image.load('graphics/bg-blue-1024.png').convert_alpha()
@@ -208,8 +195,6 @@ def main():
     flamePosX = pillarPosX
     flamePosY = pillarPosY - 65
 
-    # flame timer
-    flameTimerMax = 70
 
     # Add entities to groups
     player.add(Player(currentScreenWidth, currentScreenHeight))
@@ -250,6 +235,7 @@ def main():
     # Clock and timers
     clock = pygame.time.Clock()
     timeFactor = 100
+    flameTimerMax = 70
 
     # Enemy spawning timer
     enemyTimer = pygame.USEREVENT + 1
@@ -270,7 +256,6 @@ def main():
     startTime = int(pygame.time.get_ticks() / timeFactor)
     lastFireTime = startTime
     flameTimeCurrent = flameTimerMax
-
 
     # Begin main game loop
     while True:        

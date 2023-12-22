@@ -201,29 +201,37 @@ def main():
 
     # player start position
     playerSpawnPosition = (screenWidthCenter, screenHeightCenter + 200)
+    
+    simpleGraphics = False
 
     # Sprite graphics pathnames
+    pillarImage = ''
+    flameImage = ''
+    playerImage = ''
+    enemyBasicImage = ''
+    enemyRedImage = ''
+    sparkImage = ''
+    projectileImage = ''
 
-    # temporary
-    '''
-    pillarImage = 'graphics/temp/pillar-temp.png'
-    flameImage = 'graphics/temp/flame-temp.png'
-    playerImage = 'graphics/temp/player-temp.png'
-    enemyBasicImage = 'graphics/temp/enemy-basic.png'
-    enemyRedImage = 'graphics/temp/enemy-red.png'
-    sparkImage = 'graphics/temp/spark-temp.png'
-    projectileImage = 'graphics/temp/projectile-temp.png'
-    enemyImages = (enemyBasicImage, enemyRedImage)
-    '''
+    if simpleGraphics:
+        # old graphics
+        pillarImage = 'graphics/temp/pillar-temp.png'
+        flameImage = 'graphics/temp/flame-temp.png'
+        playerImage = 'graphics/temp/player-temp.png'
+        enemyBasicImage = 'graphics/temp/enemy-basic.png'
+        enemyRedImage = 'graphics/temp/enemy-red.png'
+        sparkImage = 'graphics/temp/spark-temp.png'
+        projectileImage = 'graphics/temp/projectile-temp.png'
+    else:
+        # standard
+        pillarImage = 'graphics/pillar.png'
+        flameImage = 'graphics/flame.png'
+        playerImage = 'graphics/player.png'
+        enemyBasicImage = 'graphics/enemy-basic.png'
+        enemyRedImage = 'graphics/enemy-red.png'
+        sparkImage = 'graphics/spark.png'
+        projectileImage = 'graphics/projectile.png'
 
-    # standard
-    pillarImage = 'graphics/pillar.png'
-    flameImage = 'graphics/flame.png'
-    playerImage = 'graphics/player.png'
-    enemyBasicImage = 'graphics/enemy-basic.png'
-    enemyRedImage = 'graphics/enemy-red.png'
-    sparkImage = 'graphics/spark.png'
-    projectileImage = 'graphics/projectile.png'
     enemyImages = (enemyBasicImage, enemyRedImage)
 
     # Add entities to groups

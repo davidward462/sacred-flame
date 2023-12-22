@@ -302,10 +302,6 @@ def main():
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():
-                
-                playerX = player.sprite.rect.center[0]
-                playerY = player.sprite.rect.center[1]
-
                 enemyGroup.add(SpawnEnemy(screenDimensions))
 
             # Decrement flame timer on tick

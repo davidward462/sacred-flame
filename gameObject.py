@@ -14,6 +14,7 @@ class GameObject(pygame.sprite.Sprite):
         self.size = self.image.get_size()
         self.mySize = (10, 10)
 
+    # used to change size of flame object
     def UpdateScale(self, percent):
         # TODO: determine absolute factor somehow
         absoluteFactor = 5

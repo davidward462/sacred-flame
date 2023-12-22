@@ -2,15 +2,16 @@ import pygame
 
 # class inherets from pygame sprite class
 class Player(pygame.sprite.Sprite):
-    def __init__(self, screenWidth, screenHeight):
+    def __init__(self, screenDimensions, spawnPosition):
 
         # Initialize parent sprite class
         super().__init__()
 
-        self.startX = screenWidth/2
-        self.startY = screenHeight/2 + 150
-        self.screenWidth = screenWidth
-        self.screenHeight = screenHeight
+        self.screenWidth = screenDimensions[0]
+        self.screenHeight = screenDimensions[1]
+
+        self.startX = spawnPosition[0]
+        self.startY = spawnPosition[1]
 
         # Image and rectangle
         self.image = pygame.image.load('graphics/player-temp.png')

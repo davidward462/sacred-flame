@@ -102,8 +102,6 @@ def GameStart():
 # Only fire if delay condition is passed
 def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime):
 
-    screenWidth = screenDimensions[0]
-    screenHeight = screenDimensions[1]
     fireDelay = 500
 
     # get current time
@@ -114,7 +112,7 @@ def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime):
 
     if dt > fireDelay:
 
-        p = Projectile(screenWidth, screenHeight, posX, posY)
+        p = Projectile(screenDimensions, posX, posY)
         if direction == "up":
             p.vy = -1
         if direction == "down":
@@ -175,6 +173,9 @@ def main():
     caption = f"Sacred Flame {version}"
     pygame.display.set_caption(caption)
 
+    screenWidthCenter = currentScreenWidth/2
+    screenHeightCenter = currentScreenHeight/2
+
     # Colors
     white = (255, 255, 255)
     black = (0, 0, 0)
@@ -188,16 +189,19 @@ def main():
     # Game object variables
 
     # place pillar in the center of the screen
-    pillarPosX = currentScreenWidth/2
-    pillarPosY = currentScreenHeight/2
+    pillarPosX = screenWidthCenter
+    pillarPosY = screenHeightCenter
 
     # place flame above pillar
     flamePosX = pillarPosX
     flamePosY = pillarPosY - 65
 
+    # player start position
+    playerSpawnPosition = (screenWidthCenter, screenHeightCenter + 200)
+
 
     # Add entities to groups
-    player.add(Player(currentScreenWidth, currentScreenHeight))
+    player.add( Player(screenDimensions, playerSpawnPosition) )
     objectGroup.add( GameObject(pillarPosX, pillarPosY, 'graphics/pillar-temp.png') )
     flameGroup.add( GameObject(flamePosX, flamePosY, 'graphics/flame-temp.png') )
 

@@ -85,12 +85,18 @@ def SpawnEnemy(screenDimensions):
 
     return e
 
+# delete old flame and create new one
+def FlameReset(flamePosition):
+    flameGroup.empty()
+    flameGroup.add( GameObject(flamePosition[0], flamePosition[1], 'graphics/flame-temp.png') )
+
 # Send game restart signal to game state machine
-def GameRestart():
+def GameRestart(flamePosition):
     enemyGroup.empty()
     projectileGroup.empty()
     sparkGroup.empty()
     player.sprite.Restart()
+    FlameReset(flamePosition)
     game.Update('r')
 
 # Send game start signal to game state machine
@@ -195,10 +201,10 @@ def main():
     # place flame above pillar
     flamePosX = pillarPosX
     flamePosY = pillarPosY - 65
+    flamePosition = (flamePosX, flamePosY)
 
     # player start position
     playerSpawnPosition = (screenWidthCenter, screenHeightCenter + 200)
-
 
     # Add entities to groups
     player.add( Player(screenDimensions, playerSpawnPosition) )
@@ -239,7 +245,7 @@ def main():
     # Clock and timers
     clock = pygame.time.Clock()
     timeFactor = 100
-    flameTimerMax = 70
+    flameTimerMax = 20 #TODO: determine time limit
 
     # Enemy spawning timer
     enemyTimer = pygame.USEREVENT + 1
@@ -291,7 +297,7 @@ def main():
                 if event.key == pygame.K_r:
                     if game.currentState == 'playerDead' or game.currentState == 'darkness':
                         flameTimeCurrent = flameTimerMax
-                        GameRestart()
+                        GameRestart(flamePosition)
                 
                 # get player input
                 if game.IsRunning():
@@ -323,7 +329,6 @@ def main():
 
             # Check flame timer
             if flameTimeCurrent <= 0:
-                flameTimeCurrent = flameTimerMax
                 game.Update('flameOut')
 
             # Collisions

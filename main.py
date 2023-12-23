@@ -236,12 +236,12 @@ def main():
         enemyBasicImage = 'graphics/dungeon/enemy-basic.png'
         enemyRedImage = 'graphics/dungeon/enemy-red.png'
         sparkImage = 'graphics/spark.png'
-        projectileImage = 'graphics/projectile.png'
-        floorImage = 'graphics/dungeon/floor-wide.png'
-        floorTile = ''
+        projectileImage = 'graphics/dungeon/magic.png'
+        floorImage = ''
+        floorTile = 'graphics/dungeon/floor-wide.png'
 
     enemyImages = (enemyBasicImage, enemyRedImage)
-    backgroundSurface = pygame.image.load(floorImage).convert_alpha()
+    backgroundSurface = pygame.image.load(floorTile).convert_alpha()
 
     # Add entities to groups
     player.add( Player(screenDimensions, playerSpawnPosition, playerImage) )

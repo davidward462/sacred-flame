@@ -186,7 +186,7 @@ def main():
     # backgroundSurface = pygame.image.load('graphics/temp/bg-blue-1024.png').convert_alpha()
 
     # background
-    screen.fill('grey32')
+    # screen.fill('grey32')
 
     # Game object variables
 
@@ -204,6 +204,10 @@ def main():
     
     simpleGraphics = False
 
+    # Graphics
+
+    tilesize = 32
+
     # Sprite graphics pathnames
     pillarImage = ''
     flameImage = ''
@@ -212,6 +216,8 @@ def main():
     enemyRedImage = ''
     sparkImage = ''
     projectileImage = ''
+    floorImage = ''
+    floorTile = ''
 
     if simpleGraphics:
         # old graphics
@@ -231,8 +237,11 @@ def main():
         enemyRedImage = 'graphics/dungeon/enemy-red.png'
         sparkImage = 'graphics/spark.png'
         projectileImage = 'graphics/projectile.png'
+        floorImage = 'graphics/dungeon/floor-full.png'
+        floorTile = ''
 
     enemyImages = (enemyBasicImage, enemyRedImage)
+    backgroundSurface = pygame.image.load(floorImage).convert_alpha()
 
     # Add entities to groups
     player.add( Player(screenDimensions, playerSpawnPosition, playerImage) )
@@ -401,8 +410,8 @@ def main():
             # Graphical updates
 
         # Background
-        screen.fill('grey32')
-        # screen.blit(backgroundSurface, (0, 0))
+        # screen.fill('grey32')
+        screen.blit(backgroundSurface, (0, 0))
 
         # Entities
         projectileGroup.draw(screen)

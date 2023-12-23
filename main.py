@@ -78,7 +78,7 @@ def SpawnEnemy(screenDimensions, enemyImages):
 
     # set spawn tuple
     spawnPos = (ex, ey)
-    enemyType = ChooseEnemyType(0.8)
+    enemyType = ChooseEnemyType(0.4)
 
     # create enemy at given position
     e = Enemy(screenDimensions, spawnPos, enemyType, enemyImages)
@@ -156,8 +156,8 @@ def QuitGame():
 def main():
 
     # Default window dimensions
-    SCREEN_WIDTH = 1024
-    SCREEN_HEIGHT = 768
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 608
 
     # get user display info
     USER_DISPLAY = pygame.display.Info()  
@@ -224,11 +224,11 @@ def main():
         projectileImage = 'graphics/temp/projectile-temp.png'
     else:
         # standard
-        pillarImage = 'graphics/pillar.png'
+        pillarImage = 'graphics/dungeon/pillar.png'
         flameImage = 'graphics/flame.png'
-        playerImage = 'graphics/player.png'
-        enemyBasicImage = 'graphics/enemy-basic.png'
-        enemyRedImage = 'graphics/enemy-red.png'
+        playerImage = 'graphics/dungeon/player.png'
+        enemyBasicImage = 'graphics/dungeon/enemy-basic.png'
+        enemyRedImage = 'graphics/dungeon/enemy-red.png'
         sparkImage = 'graphics/spark.png'
         projectileImage = 'graphics/projectile.png'
 

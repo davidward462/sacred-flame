@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
 
         self.velocityX = 0
         self.velocityY = 0
-        self.speed = 6
+        self.speed = 5
 
         self.health = 1
         self.isAlive = True

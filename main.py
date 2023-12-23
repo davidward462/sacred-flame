@@ -206,7 +206,7 @@ def main():
 
     # Graphics
 
-    tilesize = 32
+    tilesize = 64
 
     # Sprite graphics pathnames
     pillarImage = ''
@@ -237,7 +237,7 @@ def main():
         enemyRedImage = 'graphics/dungeon/enemy-red.png'
         sparkImage = 'graphics/spark.png'
         projectileImage = 'graphics/projectile.png'
-        floorImage = 'graphics/dungeon/floor-full.png'
+        floorImage = 'graphics/dungeon/floor-wide.png'
         floorTile = ''
 
     enemyImages = (enemyBasicImage, enemyRedImage)
@@ -411,7 +411,13 @@ def main():
 
         # Background
         # screen.fill('grey32')
-        screen.blit(backgroundSurface, (0, 0))
+        #screen.blit(backgroundSurface, (0, 0))
+
+        # tile the background
+        for widthPos in range(0,currentScreenWidth, tilesize):
+            for heightPos in range(0, currentScreenHeight, tilesize):
+                screen.blit(backgroundSurface, (widthPos+1, heightPos))
+
 
         # Entities
         projectileGroup.draw(screen)

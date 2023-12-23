@@ -232,7 +232,7 @@ def main():
         # standard
         pillarImage = 'graphics/dungeon/pillar.png'
         flameImage = 'graphics/flame.png'
-        playerImage = 'graphics/dungeon/player.png'
+        playerImage = 'graphics/dungeon/player-blue.png'
         enemyBasicImage = 'graphics/dungeon/enemy-basic.png'
         enemyRedImage = 'graphics/dungeon/enemy-red.png'
         sparkImage = 'graphics/spark.png'

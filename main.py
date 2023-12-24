@@ -169,24 +169,15 @@ def main():
     # dimension tuple for passing to functions
     screenDimensions = (currentScreenWidth, currentScreenHeight)
 
-    # TODO: remove this later?
-    print(f"running at {screenDimensions[0]} x {screenDimensions[1]}")
-    
-    version = " v0.7.1"
-
     # Display surface
     screen = pygame.display.set_mode((currentScreenWidth, currentScreenHeight))
-    caption = f"Sacred Flame {version}"
+    caption = f"Sacred Flame"
     pygame.display.set_caption(caption)
 
     screenWidthCenter = currentScreenWidth/2
     screenHeightCenter = currentScreenHeight/2
 
     # Surfaces
-    # backgroundSurface = pygame.image.load('graphics/temp/bg-blue-1024.png').convert_alpha()
-
-    # background
-    # screen.fill('grey32')
 
     # Game object variables
 
@@ -241,6 +232,8 @@ def main():
         floorTile = 'graphics/dungeon/floor-wide.png'
 
     enemyImages = (enemyBasicImage, enemyRedImage)
+
+    # background
     backgroundSurface = pygame.image.load(floorTile).convert_alpha()
 
     # Add entities to groups
@@ -407,11 +400,7 @@ def main():
                     flameTimeCurrent = flameTimerMax
 
                     
-            # Graphical updates
-
-        # Background
-        # screen.fill('grey32')
-        #screen.blit(backgroundSurface, (0, 0))
+        # Graphical updates
 
         # tile the background
         for widthPos in range(0,currentScreenWidth, tilesize):

@@ -197,7 +197,6 @@ def main():
 
     tilesize = 64
 
-    # standard
     pillarImage = 'graphics/pillar.png'
     flameImage = 'graphics/flame.png'
     playerImage = 'graphics/player-blue.png'

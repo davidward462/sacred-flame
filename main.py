@@ -192,44 +192,20 @@ def main():
 
     # player start position
     playerSpawnPosition = (screenWidthCenter, screenHeightCenter + 200)
-    
-    simpleGraphics = False
 
     # Graphics
 
     tilesize = 64
 
-    # Sprite graphics pathnames
-    pillarImage = ''
-    flameImage = ''
-    playerImage = ''
-    enemyBasicImage = ''
-    enemyRedImage = ''
-    sparkImage = ''
-    projectileImage = ''
-    floorImage = ''
-    floorTile = ''
-
-    if simpleGraphics:
-        # old graphics
-        pillarImage = 'graphics/temp/pillar-temp.png'
-        flameImage = 'graphics/temp/flame-temp.png'
-        playerImage = 'graphics/temp/player-temp.png'
-        enemyBasicImage = 'graphics/temp/enemy-basic.png'
-        enemyRedImage = 'graphics/temp/enemy-red.png'
-        sparkImage = 'graphics/temp/spark-temp.png'
-        projectileImage = 'graphics/temp/projectile-temp.png'
-    else:
-        # standard
-        pillarImage = 'graphics/dungeon/pillar.png'
-        flameImage = 'graphics/flame.png'
-        playerImage = 'graphics/dungeon/player-blue.png'
-        enemyBasicImage = 'graphics/dungeon/serpent-hybrid.png'
-        enemyRedImage = 'graphics/dungeon/demon.png'
-        sparkImage = 'graphics/spark.png'
-        projectileImage = 'graphics/dungeon/magic.png'
-        floorImage = ''
-        floorTile = 'graphics/dungeon/floor-wide.png'
+    # standard
+    pillarImage = 'graphics/pillar.png'
+    flameImage = 'graphics/flame.png'
+    playerImage = 'graphics/player-blue.png'
+    enemyBasicImage = 'graphics/serpent-hybrid.png'
+    enemyRedImage = 'graphics/demon.png'
+    sparkImage = 'graphics/spark.png'
+    projectileImage = 'graphics/magic.png'
+    floorTile = 'graphics/floor-wide.png'
 
     enemyImages = (enemyBasicImage, enemyRedImage)
 

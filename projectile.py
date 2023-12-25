@@ -20,7 +20,7 @@ class Projectile(pygame.sprite.Sprite):
 
         self.vx = 0
         self.vy = 0
-        self.speed = 8
+        self.speed = 7
 
     # Move projectile in particular direction
     def Move(self):     

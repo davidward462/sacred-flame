@@ -8,6 +8,7 @@ from projectile import Projectile
 from enemy import Enemy
 from gameObject import GameObject
 from spark import Spark
+from flame import Flame
 
 # Initialize pygame subsystems
 pygame.init()

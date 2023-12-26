@@ -197,6 +197,7 @@ def main():
 
     tilesize = 64
 
+    altarImage = 'graphics/flame-altar.png'
     pillarImage = 'graphics/pillar.png'
     flameImage = 'graphics/flame.png'
     playerImage = 'graphics/player-blue.png'
@@ -213,7 +214,8 @@ def main():
 
     # Add entities to groups
     player.add( Player(screenDimensions, playerSpawnPosition, playerImage) )
-    objectGroup.add( GameObject(pillarPosX, pillarPosY, pillarImage) )
+    # objectGroup.add( GameObject(pillarPosX, pillarPosY, pillarImage) )
+    objectGroup.add( GameObject(pillarPosX, pillarPosY, altarImage) )
     flameGroup.add( GameObject(flamePosX, flamePosY, flameImage) )
 
     # Fonts
@@ -388,7 +390,7 @@ def main():
         player.draw(screen)
         enemyGroup.draw(screen)
         objectGroup.draw(screen)
-        flameGroup.draw(screen)
+        # flameGroup.draw(screen)
         sparkGroup.draw(screen)
 
         # update scale for flame

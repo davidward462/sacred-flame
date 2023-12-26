@@ -386,12 +386,12 @@ def main():
 
 
         # Entities
-        projectileGroup.draw(screen)
-        player.draw(screen)
-        enemyGroup.draw(screen)
         objectGroup.draw(screen)
-        # flameGroup.draw(screen)
         sparkGroup.draw(screen)
+        projectileGroup.draw(screen)
+        enemyGroup.draw(screen)
+        # flameGroup.draw(screen)
+        player.draw(screen)
 
         # update scale for flame
         flameFraction = flameTimeCurrent / flameTimerMax

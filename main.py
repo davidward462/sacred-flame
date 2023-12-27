@@ -326,6 +326,9 @@ def main():
             if event.type == flameTimer and game.IsRunning():
                 flameTimeCurrent -= 1
 
+                # shrink flame
+                flameGroup.sprite.Resize(-1)
+
         # End event loop
 
         # Logical updates
@@ -372,6 +375,7 @@ def main():
             sparkCollision = pygame.sprite.spritecollide(player.sprite, sparkGroup, True)
             if sparkCollision:
                 flameTimeCurrent += 5
+                flameGroup.sprite.Resize(5)
 
                 # keep flame timer below or equal to maximum
                 if flameTimeCurrent > flameTimerMax:
@@ -397,12 +401,7 @@ def main():
         # update scale for flame
         flameFraction = flameTimeCurrent / flameTimerMax
         # flameGroup.sprite.UpdateScale( flameFraction )
-
-        choice = bool(random.getrandbits(1))
-        if choice:
-            flameGroup.sprite.update(1)
-        else:
-            flameGroup.sprite.update(-1)
+        
 
         # whole number percent
         flamePercent = int(flameFraction * 100)

@@ -18,10 +18,16 @@ class Flame(pygame.sprite.Sprite):
         self.size = 0
 
     # Change sprite size by argument 'change'
-    def update(self, change):
+    def Resize(self, change):
 
-        self.size += change
-        xSize = self.imageSize[0] + round(self.size)
-        ySize = self.imageSize[1] + round(self.size)
-        self.image = pygame.transform.scale( self.imageOriginal, (xSize, ySize) )
-        self.rect = self.image.get_rect( center = (self.posX, self.posY) )
+        checkSizeX = self.size + change + self.imageSize[0]
+        checkSizeY = self.size + change + self.imageSize[1]
+        print(f"{checkSizeX}, {checkSizeY}")
+
+        # change sprite size if new size won't be negative
+        if checkSizeX >= 0 and checkSizeY >= 0:
+            self.size += change
+            xSize = self.imageSize[0] + round(self.size)
+            ySize = self.imageSize[1] + round(self.size)
+            self.image = pygame.transform.scale( self.imageOriginal, (xSize, ySize) )
+            self.rect = self.image.get_rect( center = (self.posX, self.posY) )

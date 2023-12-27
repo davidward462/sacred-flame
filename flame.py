@@ -8,19 +8,20 @@ class Flame(pygame.sprite.Sprite):
         # Initialize parent sprite class
         super().__init__()
 
-        self.growth_rate = 1
+        self.posX = posX
+        self.posY = posY
+        self.imageOriginal = pygame.image.load(imagePath)
+        self.image = self.imageOriginal
+        self.imageSize = self.image.get_size()
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.posX, self.posY)
+        self.size = 0
 
-        self.image = pygame.image.load(imagePath)
-        self.rect = self.image.get_rect(center = (posX, posY) )
+    # Change sprite size by argument 'change'
+    def update(self, change):
 
-        self.size = self.image.get_size()
-        self.mySize = (10, 10)
-
-        self.original_image = self.image
-
-    def update(self):
-        self.image_scale += self.growth_rate
-        self.image = pygame.transform.scale(
-            self.original_image, (self.image_scale, self.image_scale))
-
-        self.rect = self.image.get_rect(center = self.rect.center)
+        self.size += change
+        xSize = self.imageSize[0] + round(self.size)
+        ySize = self.imageSize[1] + round(self.size)
+        self.image = pygame.transform.scale( self.imageOriginal, (xSize, ySize) )
+        self.rect = self.image.get_rect( center = (self.posX, self.posY) )

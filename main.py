@@ -217,7 +217,7 @@ def main():
     player.add( Player(screenDimensions, playerSpawnPosition, playerImage) )
     # objectGroup.add( GameObject(pillarPosX, pillarPosY, pillarImage) )
     objectGroup.add( GameObject(pillarPosX, pillarPosY, altarImage) )
-    flameGroup.add( GameObject(flamePosX, flamePosY, flameImage) )
+    flameGroup.add( Flame(flamePosX, flamePosY, flameImage) )
 
     # Fonts
 
@@ -391,12 +391,18 @@ def main():
         sparkGroup.draw(screen)
         projectileGroup.draw(screen)
         enemyGroup.draw(screen)
-        # flameGroup.draw(screen)
+        flameGroup.draw(screen)
         player.draw(screen)
 
         # update scale for flame
         flameFraction = flameTimeCurrent / flameTimerMax
-        flameGroup.sprite.UpdateScale( flameFraction )
+        # flameGroup.sprite.UpdateScale( flameFraction )
+
+        choice = bool(random.getrandbits(1))
+        if choice:
+            flameGroup.sprite.update(1)
+        else:
+            flameGroup.sprite.update(-1)
 
         # whole number percent
         flamePercent = int(flameFraction * 100)

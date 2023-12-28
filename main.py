@@ -198,14 +198,14 @@ def main():
 
     tilesize = 64
 
-    pillarImage = 'graphics/environment/block.png'
-    flameImage = 'graphics/environment/flame.png'
+    pillarImage = 'graphics/game/block.png'
+    flameImage = 'graphics/game/flame.png'
     playerImage = 'graphics/player/player-hood.png'
     enemyBasicImage = 'graphics/enemy/serpent-hybrid.png'
     enemyRedImage = 'graphics/enemy/demon.png'
-    sparkImage = ['graphics/environment/spark-1.png', 'graphics/environment/spark-2.png', 'graphics/environment/spark-3.png', 'graphics/environment/spark-4.png']
+    sparkImage = ['graphics/game/spark/1.png', 'graphics/game/spark/2.png', 'graphics/game/spark/3.png', 'graphics/game/spark/4.png']
     projectileImage = 'graphics/magic/magic.png'
-    floorTile = 'graphics/environment/floor-diagonal.png'
+    floorTile = 'graphics/game/floor-diagonal.png'
 
     enemyImages = (enemyBasicImage, enemyRedImage)
 

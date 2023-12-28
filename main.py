@@ -215,8 +215,8 @@ def main():
 
     # Add entities to groups
     player.add( Player(screenDimensions, playerSpawnPosition, playerImage) )
-    # objectGroup.add( GameObject(pillarPosX, pillarPosY, pillarImage) )
-    objectGroup.add( GameObject(pillarPosX, pillarPosY, altarImage) )
+    objectGroup.add( GameObject(pillarPosX, pillarPosY, pillarImage) )
+    # objectGroup.add( GameObject(pillarPosX, pillarPosY, altarImage) )
     flameGroup.add( Flame(flamePosX, flamePosY, flameImage) )
 
     # Fonts

@@ -89,7 +89,7 @@ def SpawnEnemy(screenDimensions, enemyImages):
 # delete old flame and create new one
 def FlameReset(flamePosition, flameImage):
     flameGroup.empty()
-    flameGroup.add( GameObject(flamePosition[0], flamePosition[1], flameImage) )
+    flameGroup.add( Flame(flamePosition[0], flamePosition[1], flameImage) )
 
 # Send game restart signal to game state machine
 def GameRestart(flamePosition, flameImage):

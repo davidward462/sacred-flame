@@ -8,13 +8,12 @@ class Spark(pygame.sprite.Sprite):
         # Initialize parent sprite class
         super().__init__()
 
+        self.frameList = []
         
-        frame1 = pygame.image.load(imagePathList[0])
-        frame2 = pygame.image.load(imagePathList[1])
-        frame3 = pygame.image.load(imagePathList[2])
-        frame4 = pygame.image.load(imagePathList[3])
+        frameCount = len(imagePathList)
 
-        self.frameList = [frame1, frame2, frame3, frame4]
+        for i in range(frameCount):
+            self.frameList.append( pygame.image.load(imagePathList[i]) )
 
         self.animationIndex = 0
 

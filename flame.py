@@ -31,3 +31,11 @@ class Flame(pygame.sprite.Sprite):
             ySize = self.imageSize[1] + round(self.size)
             self.image = pygame.transform.scale( self.imageOriginal, (xSize, ySize) )
             self.rect = self.image.get_rect( center = (self.posX, self.posY) )
+
+    # Set sprite size to percent of whole given in argument 'percent'
+    def SetSize(self, percent):
+        currentSizeX = (percent) * self.imageSize[0]
+        currentSizeY = (percent) * self.imageSize[1]
+
+        self.image = pygame.transform.scale( self.imageOriginal, (currentSizeX, currentSizeY) )
+        self.rect = self.image.get_rect( center = (self.posX, self.posY) )

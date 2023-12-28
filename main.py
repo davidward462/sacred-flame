@@ -200,7 +200,7 @@ def main():
 
     pillarImage = 'graphics/block.png'
     flameImage = 'graphics/flame.png'
-    playerImage = 'graphics/player-blue.png'
+    playerImage = 'graphics/player.png'
     enemyBasicImage = 'graphics/serpent-hybrid.png'
     enemyRedImage = 'graphics/demon.png'
     sparkImage = 'graphics/spark.png'

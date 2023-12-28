@@ -205,7 +205,7 @@ def main():
     enemyRedImage = 'graphics/demon.png'
     sparkImage = 'graphics/spark.png'
     projectileImage = 'graphics/magic.png'
-    floorTile = 'graphics/floor-wide.png'
+    floorTile = 'graphics/floor-diagonal.png'
 
     enemyImages = (enemyBasicImage, enemyRedImage)
 

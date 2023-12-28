@@ -79,7 +79,7 @@ def SpawnEnemy(screenDimensions, enemyImages):
 
     # set spawn tuple
     spawnPos = (ex, ey)
-    enemyType = ChooseEnemyType(0.4)
+    enemyType = ChooseEnemyType(0.8)
 
     # create enemy at given position
     e = Enemy(screenDimensions, spawnPos, enemyType, enemyImages)
@@ -203,7 +203,7 @@ def main():
     playerImage = 'graphics/player/player-hood.png'
     enemyBasicImage = 'graphics/enemy/serpent-hybrid.png'
     enemyRedImage = 'graphics/enemy/demon.png'
-    sparkImage = 'graphics/environment/spark.png'
+    sparkImage = ['graphics/environment/spark-1.png', 'graphics/environment/spark-2.png', 'graphics/environment/spark-3.png', 'graphics/environment/spark-4.png']
     projectileImage = 'graphics/magic/magic.png'
     floorTile = 'graphics/environment/floor-diagonal.png'
 
@@ -332,6 +332,7 @@ def main():
             player.update()
             projectileGroup.update()
             enemyGroup.update(player)
+            sparkGroup.update()
 
             # Check flame timer
             if flameTimeCurrent <= 0:

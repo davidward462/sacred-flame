@@ -10,7 +10,7 @@ class Flame(pygame.sprite.Sprite):
 
         self.posX = posX
         self.posY = posY
-        self.imageOriginal = pygame.image.load(imagePath)
+        self.imageOriginal = pygame.image.load(imagePath[0])
         self.image = self.imageOriginal
         self.imageSize = self.image.get_size()
         self.rect = self.image.get_rect()

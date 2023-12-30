@@ -54,7 +54,7 @@ class Flame(pygame.sprite.Sprite):
 
 
     def Animate(self):
-        self.animationIndex += 0.1
+        self.animationIndex += 0.14
         if self.animationIndex >= len(self.frameList):
             self.animationIndex = 0
 

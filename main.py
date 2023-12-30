@@ -201,7 +201,20 @@ def main():
     pillarImage = 'graphics/game/block.png'
     flameImage = 'graphics/game/flame.png'
     flameImageList = [
-    'graphics/game/flame/fire1_64_1.png'
+        'graphics/game/flame/fire1_64_1.png',
+        'graphics/game/flame/fire1_64_2.png',
+        'graphics/game/flame/fire1_64_3.png',
+        'graphics/game/flame/fire1_64_4.png',
+        'graphics/game/flame/fire1_64_5.png',
+        'graphics/game/flame/fire1_64_6.png',
+        'graphics/game/flame/fire1_64_7.png',
+        'graphics/game/flame/fire1_64_8.png',
+        'graphics/game/flame/fire1_64_9.png',
+        'graphics/game/flame/fire1_64_10.png',
+        'graphics/game/flame/fire1_64_11.png',
+        'graphics/game/flame/fire1_64_12.png',
+        'graphics/game/flame/fire1_64_13.png',
+        'graphics/game/flame/fire1_64_14.png'
             ]
     playerImage = 'graphics/player/player-hood.png'
     enemyBasicImage = 'graphics/enemy/serpent-hybrid.png'
@@ -336,6 +349,7 @@ def main():
             projectileGroup.update()
             enemyGroup.update(player)
             sparkGroup.update()
+            flameGroup.update()
 
             # Check flame timer
             if flameTimeCurrent <= 0:

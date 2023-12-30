@@ -3,19 +3,31 @@ import pygame
 # class inherets from pygame sprite class
 # This class represents some object which appears in the game world
 class Flame(pygame.sprite.Sprite):
-    def __init__(self, posX, posY, imagePath):
+    def __init__(self, posX, posY, imagePathList):
 
         # Initialize parent sprite class
         super().__init__()
 
         self.posX = posX
         self.posY = posY
-        self.imageOriginal = pygame.image.load(imagePath[0])
+        self.imageOriginal = pygame.image.load(imagePathList[0])
         self.image = self.imageOriginal
         self.imageSize = self.image.get_size()
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.posX, self.posY)
+        # self.rect = self.image.get_rect()
+        # self.rect.center = (self.posX, self.posY)
         self.size = 0
+
+        self.frameList = []
+        
+        frameCount = len(imagePathList)
+
+        for i in range(frameCount):
+            self.frameList.append( pygame.image.load(imagePathList[i]) )
+
+        self.animationIndex = 0
+
+        self.image = self.frameList[self.animationIndex] 
+        self.rect = self.image.get_rect(center = (posX, posY) )
 
     # Change sprite size by argument 'change'
     def Resize(self, change):
@@ -39,3 +51,13 @@ class Flame(pygame.sprite.Sprite):
 
         self.image = pygame.transform.scale( self.imageOriginal, (currentSizeX, currentSizeY) )
         self.rect = self.image.get_rect( center = (self.posX, self.posY) )
+
+
+    def Animate(self):
+        self.animationIndex += 0.1
+        if self.animationIndex >= len(self.frameList):
+            self.animationIndex = 0
+        self.image = self.frameList[int(self.animationIndex)]
+
+    def update(self):
+        self.Animate()

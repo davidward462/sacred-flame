@@ -232,7 +232,7 @@ def main():
         'graphics/game/flame/fire1_64_57.png',
         'graphics/game/flame/fire1_64_59.png',
             ]
-    playerImage = 'graphics/player/player-hood.png'
+    playerImageSet = ['graphics/player/player.png', 'graphics/player/player-dead.png']
     enemyBasicImage = 'graphics/enemy/serpent-hybrid.png'
     enemyRedImage = 'graphics/enemy/demon.png'
     sparkImage = ['graphics/game/spark/1.png', 'graphics/game/spark/2.png', 'graphics/game/spark/3.png', 'graphics/game/spark/4.png']
@@ -245,7 +245,7 @@ def main():
     backgroundSurface = pygame.image.load(floorTile).convert_alpha()
 
     # Add entities to groups
-    player.add( Player(screenDimensions, playerSpawnPosition, playerImage) )
+    player.add( Player(screenDimensions, playerSpawnPosition, playerImageSet) )
     objectGroup.add( GameObject(pillarPosX, pillarPosY, pillarImage) )
     flameGroup.add( Flame(flamePosX, flamePosY, flameImageList) )
 
@@ -442,6 +442,9 @@ def main():
         # TODO:  remove this in final version
         drawThis = str(flamePercent) + "%"
         DrawText(drawThis, 100, 50, defaultFont, screen)
+
+        playerHealth = player.sprite.IsAlive()
+        DrawText(playerHealth, 100, 100, defaultFont, screen)
 
         # If on the title screen
         if game.IsTitle():

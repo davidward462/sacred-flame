@@ -2,7 +2,7 @@ import pygame
 
 # class inherets from pygame sprite class
 class Player(pygame.sprite.Sprite):
-    def __init__(self, screenDimensions, spawnPosition, playerImage):
+    def __init__(self, screenDimensions, spawnPosition, playerImageSet):
 
         # Initialize parent sprite class
         super().__init__()
@@ -14,15 +14,18 @@ class Player(pygame.sprite.Sprite):
         self.startY = spawnPosition[1]
 
         # Image and rectangle
-        self.image = pygame.image.load(playerImage)
+        self.imageAlive = pygame.image.load(playerImageSet[0])
+        self.imageDead = pygame.image.load(playerImageSet[1])
+        self.image = self.imageAlive
         self.rect = self.image.get_rect()
         self.rect.center = (self.startX, self.startY)
 
         self.velocityX = 0
         self.velocityY = 0
         self.speed = 5
-
-        self.health = 1
+    
+        self.maxHealth = 1
+        self.health = self.maxHealth
         self.isAlive = True
 
         # Sounds
@@ -48,6 +51,8 @@ class Player(pygame.sprite.Sprite):
             self.velocityY *= 0.7071
 
     def Restart(self):
+        self.health = self.maxHealth
+        self.isAlive = True
         self.rect.x = self.startX
         self.rect.y = self.startY
 
@@ -82,17 +87,26 @@ class Player(pygame.sprite.Sprite):
 
     # Set player to dead if health is zero or less
     def CheckHealth(self):
-        if self.health < 1:
+        if self.health > 0:
+            self.isAlive = True
+        else:
             self.isAlive = False
 
     def IsAlive(self):
         return self.isAlive
+
+    def SetSprite(self):
+        if self.isAlive:
+            self.image = self.imageAlive
+        else:
+            self.image = self.imageDead
 
     # Update sprite logic
     def update(self):
         self.SetVelocity()
         self.Move()
         self.CheckHealth()
+        self.SetSprite()
         self.delete()
 
     # Destroy sprite

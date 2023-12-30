@@ -49,7 +49,7 @@ class Flame(pygame.sprite.Sprite):
         currentSizeX = (percent) * self.imageSize[0]
         currentSizeY = (percent) * self.imageSize[1]
 
-        self.image = pygame.transform.scale( self.imageOriginal, (currentSizeX, currentSizeY) )
+        self.image = pygame.transform.scale( self.frameList[ int(self.animationIndex) ], (currentSizeX, currentSizeY) )
         self.rect = self.image.get_rect( center = (self.posX, self.posY) )
 
 
@@ -57,7 +57,6 @@ class Flame(pygame.sprite.Sprite):
         self.animationIndex += 0.1
         if self.animationIndex >= len(self.frameList):
             self.animationIndex = 0
-        self.image = self.frameList[int(self.animationIndex)]
 
     def update(self):
         self.Animate()

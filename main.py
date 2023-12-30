@@ -440,11 +440,10 @@ def main():
 
         # show flame percent on screen
         # TODO:  remove this in final version
+        """
         drawThis = str(flamePercent) + "%"
         DrawText(drawThis, 100, 50, defaultFont, screen)
-
-        playerHealth = player.sprite.IsAlive()
-        DrawText(playerHealth, 100, 100, defaultFont, screen)
+        """
 
         # If on the title screen
         if game.IsTitle():

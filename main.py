@@ -291,6 +291,7 @@ def main():
     spellSound = pygame.mixer.Sound('audio/spell-cast-low-pitch.wav')
     sparkPickupSound = pygame.mixer.Sound('audio/fire-flare.wav')
     playerDeathSound = pygame.mixer.Sound('audio/sine-wave-dissipate-low.wav')
+    redDemonDeathSound = pygame.mixer.Sound('audio/monster-growl-1.wav')
 
     # Clock and timers
     clock = pygame.time.Clock()
@@ -395,6 +396,7 @@ def main():
                 # get type
                 enemyType = sprite.GetType()
                 if enemyType == 'red':
+                    redDemonDeathSound.play()
                     # Get position of enemy the bullet collided with
                     spawnX = sprite.position[0]
                     spawnY = sprite.position[1]

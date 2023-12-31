@@ -186,6 +186,8 @@ def main():
     screenWidthCenter = currentScreenWidth/2
     screenHeightCenter = currentScreenHeight/2
 
+    currentScore = 0
+
     # Surfaces
 
     # Game object variables
@@ -348,6 +350,7 @@ def main():
                 
                 if event.key == pygame.K_r:
                     if game.currentState == 'playerDead' or game.currentState == 'darkness':
+                        currentScore = 0
                         flameTimeCurrent = flameTimerMax
                         GameRestart(flamePosition, flameImageList)
                 
@@ -400,15 +403,27 @@ def main():
                 # get type
                 enemyType = sprite.GetType()
                 if enemyType == 'red':
+
+                    # play sound
                     redDemonDeathSound.play()
+
                     # Get position of enemy the bullet collided with
                     spawnX = sprite.position[0]
                     spawnY = sprite.position[1]
+                    
                     # create spark object
                     sparkGroup.add( Spark(spawnX, spawnY, sparkImage) )
+
+                    # increase score
+                    currentScore += 150
                 
                 if enemyType == 'basic':
+
+                    # play sound
                     serpentDeathSound.play()
+
+                    # increase score
+                    currentScore += 100
             
             # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite
@@ -467,6 +482,9 @@ def main():
         drawThis = str(flamePercent) + "%"
         DrawText(drawThis, 100, 50, defaultFont, screen)
         """
+
+        # Show score
+        DrawText(currentScore, 700, 50, defaultFont, screen)
 
         # If on the title screen
         if game.IsTitle():

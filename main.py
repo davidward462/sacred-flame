@@ -362,9 +362,12 @@ def main():
                     if event.key == pygame.K_RIGHT:
                         lastFireTime = FireProjectile(screenDimensions, (player.sprite.rect.center[0], player.sprite.rect.center[1]), "right", lastFireTime, projectileImage, spellSound)
 
+            # carrier enemy spawn increases with a lower flame
+            enemyChance = 1 - (flameTimeCurrent / flameTimerMax)
+
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():
-                enemyGroup.add(SpawnEnemy(screenDimensions, enemyImages, 0.6))
+                enemyGroup.add(SpawnEnemy(screenDimensions, enemyImages, enemyChance))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():

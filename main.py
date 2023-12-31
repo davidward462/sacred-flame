@@ -487,8 +487,8 @@ def main():
         """
 
         # Show score
-        DrawText(currentScore, 700, 50, defaultFont, screen)
-        DrawText(f"high: {highScore}", 700, 100, defaultFont, screen)
+        DrawText(f"score: {currentScore}", 650, 50, defaultFont, screen)
+        DrawText(f"high: {highScore}", 650, 100, defaultFont, screen)
 
         # If on the title screen
         if game.IsTitle():

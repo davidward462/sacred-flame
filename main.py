@@ -59,7 +59,7 @@ def ChooseEnemyType(chance):
         return "red"
 
 # spawn enemy on the given radius of the circle
-def SpawnEnemy(screenDimensions, enemyImages):
+def SpawnEnemy(screenDimensions, enemyImages, enemyChance):
 
     screenWidth = screenDimensions[0]
     screenHeight = screenDimensions[1]
@@ -80,7 +80,7 @@ def SpawnEnemy(screenDimensions, enemyImages):
 
     # set spawn tuple
     spawnPos = (ex, ey)
-    enemyType = ChooseEnemyType(0.8)
+    enemyType = ChooseEnemyType(enemyChance)
 
     # create enemy at given position
     e = Enemy(screenDimensions, spawnPos, enemyType, enemyImages)
@@ -291,7 +291,8 @@ def main():
     spellSound = pygame.mixer.Sound('audio/spell-cast-low-pitch.wav')
     sparkPickupSound = pygame.mixer.Sound('audio/fire-flare.wav')
     playerDeathSound = pygame.mixer.Sound('audio/sine-wave-dissipate-low.wav')
-    redDemonDeathSound = pygame.mixer.Sound('audio/monster-growl-1.wav')
+    redDemonDeathSound = pygame.mixer.Sound('audio/monster-sound-big-death.wav')
+    serpentDeathSound = pygame.mixer.Sound('audio/monster-sound-medium-death.wav')
 
     # Clock and timers
     clock = pygame.time.Clock()
@@ -363,7 +364,7 @@ def main():
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():
-                enemyGroup.add(SpawnEnemy(screenDimensions, enemyImages))
+                enemyGroup.add(SpawnEnemy(screenDimensions, enemyImages, 0.6))
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():
@@ -402,6 +403,9 @@ def main():
                     spawnY = sprite.position[1]
                     # create spark object
                     sparkGroup.add( Spark(spawnX, spawnY, sparkImage) )
+                
+                if enemyType == 'basic':
+                    serpentDeathSound.play()
             
             # Check collision between enemy and player.
             # spritecollideany(sprite, group) -> Sprite

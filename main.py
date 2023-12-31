@@ -288,7 +288,8 @@ def main():
 
     # Sounds
 
-    spellSound = pygame.mixer.Sound("audio/spell-cast-low-pitch.wav")
+    spellSound = pygame.mixer.Sound('audio/spell-cast-low-pitch.wav')
+    sparkPickupSound = pygame.mixer.Sound('audio/fire-flare.wav')
 
     # Clock and timers
     clock = pygame.time.Clock()
@@ -413,6 +414,7 @@ def main():
             # check collision between player and spark
             sparkCollision = pygame.sprite.spritecollide(player.sprite, sparkGroup, True)
             if sparkCollision:
+                sparkPickupSound.play()
                 flameTimeCurrent += 5
 
                 # keep flame timer below or equal to maximum

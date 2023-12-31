@@ -12,6 +12,7 @@ from flame import Flame
 
 # Initialize pygame subsystems
 pygame.init()
+pygame.mixer.init()
 
 # Game state object
 game = Game()
@@ -107,7 +108,7 @@ def GameStart():
 
 # Create projectile at position of player and give direction
 # Only fire if delay condition is passed
-def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime, projectileImage):
+def FireProjectile(screenDimensions, position, direction, lastFireTime, projectileImage, sound):
 
     fireDelay = 500
 
@@ -116,6 +117,9 @@ def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime, projec
 
     # difference between now and last shot
     dt = currentTime - lastFireTime
+
+    posX = position[0]
+    posY = position[1]
 
     if dt > fireDelay:
 
@@ -129,6 +133,9 @@ def FireProjectile(screenDimensions, posX, posY, direction, lastFireTime, projec
         if direction == "right":
             p.vx = 1
         projectileGroup.add(p)
+
+        # play sound
+        sound.play()
 
         return currentTime
     
@@ -151,6 +158,7 @@ def DrawText(input, posX, posY, font, screen):
 
 # Shutdown pygame and exit program.
 def QuitGame():
+    pygame.mixer.quit()
     pygame.quit()
     exit()
 
@@ -278,7 +286,9 @@ def main():
     flameOutTextRect = flameOutText.get_rect()
     flameOutTextRect.center = (currentScreenWidth / 2, currentScreenHeight / 2)
 
-    # Music
+    # Sounds
+
+    spellSound = pygame.mixer.Sound("audio/spell-cast-low-pitch.wav")
 
     # Clock and timers
     clock = pygame.time.Clock()
@@ -340,13 +350,13 @@ def main():
                 # get player input
                 if game.IsRunning():
                     if event.key == pygame.K_UP:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "up", lastFireTime, projectileImage)
+                        lastFireTime = FireProjectile(screenDimensions, (player.sprite.rect.center[0], player.sprite.rect.center[1]), "up", lastFireTime, projectileImage, spellSound)
                     if event.key == pygame.K_DOWN:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "down", lastFireTime, projectileImage)
+                        lastFireTime = FireProjectile(screenDimensions, (player.sprite.rect.center[0], player.sprite.rect.center[1]), "down", lastFireTime, projectileImage, spellSound)
                     if event.key == pygame.K_LEFT:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "left", lastFireTime, projectileImage)
+                        lastFireTime = FireProjectile(screenDimensions, (player.sprite.rect.center[0], player.sprite.rect.center[1]), "left", lastFireTime, projectileImage, spellSound)
                     if event.key == pygame.K_RIGHT:
-                        lastFireTime = FireProjectile(screenDimensions, player.sprite.rect.center[0], player.sprite.rect.center[1], "right", lastFireTime, projectileImage)
+                        lastFireTime = FireProjectile(screenDimensions, (player.sprite.rect.center[0], player.sprite.rect.center[1]), "right", lastFireTime, projectileImage, spellSound)
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():

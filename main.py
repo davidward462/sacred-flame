@@ -186,7 +186,9 @@ def main():
     screenWidthCenter = currentScreenWidth/2
     screenHeightCenter = currentScreenHeight/2
 
+    # scoring
     currentScore = 0
+    highScore = 0
 
     # Surfaces
 
@@ -350,6 +352,7 @@ def main():
                 
                 if event.key == pygame.K_r:
                     if game.currentState == 'playerDead' or game.currentState == 'darkness':
+                        highScore = max( currentScore, highScore)
                         currentScore = 0
                         flameTimeCurrent = flameTimerMax
                         GameRestart(flamePosition, flameImageList)
@@ -485,6 +488,7 @@ def main():
 
         # Show score
         DrawText(currentScore, 700, 50, defaultFont, screen)
+        DrawText(f"high: {highScore}", 700, 100, defaultFont, screen)
 
         # If on the title screen
         if game.IsTitle():

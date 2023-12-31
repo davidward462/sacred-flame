@@ -290,6 +290,7 @@ def main():
 
     spellSound = pygame.mixer.Sound('audio/spell-cast-low-pitch.wav')
     sparkPickupSound = pygame.mixer.Sound('audio/fire-flare.wav')
+    playerDeathSound = pygame.mixer.Sound('audio/sine-wave-dissipate-low.wav')
 
     # Clock and timers
     clock = pygame.time.Clock()
@@ -410,6 +411,7 @@ def main():
                 # check if player has died after collision
                 if not player.sprite.IsAlive():
                     game.Update('death')
+                    playerDeathSound.play()
 
             # check collision between player and spark
             sparkCollision = pygame.sprite.spritecollide(player.sprite, sparkGroup, True)

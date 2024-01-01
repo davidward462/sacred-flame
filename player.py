@@ -28,7 +28,7 @@ class Player(pygame.sprite.Sprite):
         self.health = self.maxHealth
         self.isAlive = True
 
-        # Sounds
+        self.facing = "down"
 
     def SetVelocity(self):
         self.velocityX = 0
@@ -94,6 +94,9 @@ class Player(pygame.sprite.Sprite):
 
     def IsAlive(self):
         return self.isAlive
+
+    def GetFacing(self):
+        return self.facing
 
     def SetSprite(self):
         if self.isAlive:

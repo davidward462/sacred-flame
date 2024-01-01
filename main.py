@@ -471,7 +471,6 @@ def main():
 
         # update scale for flame
         flameFraction = flameTimeCurrent / flameTimerMax
-        # flameGroup.sprite.UpdateScale( flameFraction )
 
         flameScaleFactor = 2
         flameGroup.sprite.SetSize(flameFraction * flameScaleFactor)

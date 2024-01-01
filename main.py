@@ -298,7 +298,6 @@ def main():
     playerDeathSound = pygame.mixer.Sound('audio/sine-wave-dissipate-low.wav')
     redDemonDeathSound = pygame.mixer.Sound('audio/monster-sound-big-death.wav')
     serpentDeathSound = pygame.mixer.Sound('audio/monster-sound-medium-death.wav')
-    shimmerSound = pygame.mixer.Sound('audio/magic-shimmer.wav')
 
     # Clock and timers
     clock = pygame.time.Clock()

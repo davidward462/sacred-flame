@@ -291,7 +291,6 @@ def main():
     flameOutTextRect.center = (currentScreenWidth / 2, currentScreenHeight / 2)
 
     # Sounds
-
     spellSound = pygame.mixer.Sound('audio/spell-cast-low-pitch.wav')
     spellSound.set_volume(0.5)
     sparkPickupSound = pygame.mixer.Sound('audio/fire-flare.wav')
@@ -381,6 +380,8 @@ def main():
                 flameTimeCurrent -= 1
 
         # End event loop
+
+        
 
         # Logical updates
         if game.IsRunning():

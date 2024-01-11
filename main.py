@@ -295,8 +295,10 @@ def main():
     spellSound.set_volume(0.5)
     sparkPickupSound = pygame.mixer.Sound('audio/fire-flare.wav')
     playerDeathSound = pygame.mixer.Sound('audio/sine-wave-dissipate-low.wav')
-    redDemonDeathSound = pygame.mixer.Sound('audio/monster-sound-big-death.wav')
-    serpentDeathSound = pygame.mixer.Sound('audio/monster-sound-medium-death.wav')
+    redDemonSound = pygame.mixer.Sound('audio/monster-sound-big-death.wav')
+    serpentSound = pygame.mixer.Sound('audio/monster-sound-medium-death.wav')
+    magicImpact = pygame.mixer.Sound('audio/magic-explosion.wav')
+    magicImpact.set_volume(0.7)
 
     # Clock and timers
     clock = pygame.time.Clock()
@@ -405,12 +407,13 @@ def main():
 
             # loop through sprites in returned sprite dict
             for sprite in projectileCollision:
+
+                # play sound
+                magicImpact.play()
+
                 # get type
                 enemyType = sprite.GetType()
                 if enemyType == 'red':
-
-                    # play sound
-                    redDemonDeathSound.play()
 
                     # Get position of enemy the bullet collided with
                     spawnX = sprite.position[0]
@@ -423,9 +426,6 @@ def main():
                     currentScore += 150
                 
                 if enemyType == 'basic':
-
-                    # play sound
-                    serpentDeathSound.play()
 
                     # increase score
                     currentScore += 100

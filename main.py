@@ -375,7 +375,8 @@ def main():
 
             # spawn enemy on timer
             if event.type == enemyTimer and game.IsRunning():
-                enemyGroup.add(SpawnEnemy(screenDimensions, enemyImages, enemyChance))
+                enemy = SpawnEnemy(screenDimensions, enemyImages, enemyChance)
+                enemyGroup.add(enemy)
 
             # Decrement flame timer on tick
             if event.type == flameTimer and game.IsRunning():

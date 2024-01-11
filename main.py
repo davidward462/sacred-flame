@@ -266,11 +266,17 @@ def main():
     # TODO: determine final font style
     defaultFont = pygame.font.SysFont('freesansbold', 32)
 
+    # Title font
+    titleFont = pygame.font.SysFont('freesansbold', 56)
+    titleText = titleFont.render("Sacred Flame", True, 'white', 'black') 
+    titleTextRect = titleText.get_rect()
+    titleTextRect.center = (currentScreenWidth / 2, (currentScreenHeight / 2) - 100 )
+
     # Start of game font
     # startFont = pygame.font.SysFont('freesansbold', 32)
     startText = defaultFont.render("Press SPACE to begin", True, 'white', 'black') 
     startTextRect = startText.get_rect()
-    startTextRect.center = (currentScreenWidth / 2, currentScreenHeight / 2)
+    startTextRect.center = (currentScreenWidth / 2, (currentScreenHeight / 2) + 100 )
 
     # Pause screen font
     # pauseFont = pygame.font.SysFont('freesansbold', 32)
@@ -494,6 +500,7 @@ def main():
 
         # If on the title screen
         if game.IsTitle():
+            screen.blit(titleText, titleTextRect)
             screen.blit(startText, startTextRect)
 
         # If game is paused

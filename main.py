@@ -64,8 +64,9 @@ def SpawnEnemy(screenDimensions, enemyImages, enemyChance):
     screenWidth = screenDimensions[0]
     screenHeight = screenDimensions[1]
 
-    minDistance = screenWidth/2 + 100
-    maxDistance = minDistance + 100
+        # cast to int to avoid bug with random.randint()
+    minDistance = (int)(screenWidth/2 + 100)
+    maxDistance = (int)(minDistance + 100)
     
     # random angle
     angle = 2 * math.pi * random.random()
